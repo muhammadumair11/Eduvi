@@ -1,0 +1,138 @@
+[
+    {
+        "title": "Courses",
+        "list": [
+            {
+                "name": "Classroom courses",
+                "link": "#"
+            },
+            {
+                "name": "Virtual classroom courses",
+                "link": "#"
+            },
+            {
+                "name": "E-learning courses",
+                "link": "#"
+            },
+            {
+                "name": "Video Courses",
+                "link": "#"
+            },
+            {
+                "name": "Offline Courses",
+                "link": "#"
+            }
+        ]
+    },
+    {
+        "title": "Community",
+        "list": [
+            {
+                "name": "Learners",
+                "link": "#"
+            },
+            {
+                "name": "Parteners",
+                "link": "#"
+            },
+            {
+                "name": "Developers",
+                "link": "#"
+            },
+            {
+                "name": "Transactions",
+                "link": "#"
+            },
+            {
+                "name": "Blog",
+                "link": "#"
+            },
+            {
+                "name": "Teaching Center",
+                "link": "#"
+            }
+        ]
+    },
+    {
+        "title": "Quick links",
+        "list": [
+            {
+                "name": "Home",
+                "link": "#"
+            },
+            {
+                "name": "Professional Education",
+                "link": "#"
+            },
+            {
+                "name": "Courses",
+                "link": "#"
+            },
+            {
+                "name": "Admissions",
+                "link": "#"
+            },
+            {
+                "name": "Testimonial",
+                "link": "#"
+            },
+            {
+                "name": "Programs",
+                "link": "#"
+            }
+        ]
+    },
+    {
+        "title": "More",
+        "list": [
+            {
+                "name": "Press",
+                "link": "#"
+            },
+            {
+                "name": "Investors",
+                "link": "#"
+            },
+            {
+                "name": "Terms",
+                "link": "#"
+            },
+            {
+                "name": "Privacy",
+                "link": "#"
+            },
+            {
+                "name": "Help",
+                "link": "#"
+            },
+            {
+                "name": "Contact",
+                "link": "#"
+            }
+        ]
+    }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
