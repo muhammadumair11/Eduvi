@@ -1,24 +1,33 @@
-
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+import {
+    Box,
+    Button,
+    Grid,
+    Stack,
+    Typography,
+    useMediaQuery,
+} from "@mui/material";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { primaryHeadingBoldProps, primarySubtitleProps } from '../../../HelperPropFunctions/typography';
+import {
+    primaryHeadingBoldProps,
+    primarySubtitleProps,
+} from "../../../HelperPropFunctions/typography";
 
 function LessonsSection({ children }) {
-
-    let {pathname: url} = useLocation()
-
-    console.log(url);
+    let { pathname: url } = useLocation();
+    const isSmallScreen = useMediaQuery((theme) =>
+        theme.breakpoints.down("md")
+    );
 
     const secondaryButtonProps = (prop) => ({
         size: "large",
         color: "secondary",
         variant: prop || "text",
-        fullWidth: { lg: false, sm: true },
+        fullWidth: isSmallScreen ? true : false,
     });
 
     return (
-        <Grid container marginY={4} paddingY={4}>
+        <Grid container spacing={2} marginY={4} paddingY={4}>
             <Grid item lg={2}></Grid>
             <Grid item lg={8}>
                 <Box textAlign="center">
@@ -43,7 +52,7 @@ function LessonsSection({ children }) {
                 </Box>
                 <Stack
                     paddingY={3}
-                    direction={{ lg: "row", md: "column" }}
+                    direction={{ lg: "row", sm: "column" }}
                     justifyContent="center"
                     spacing={1.5}
                 >
@@ -59,9 +68,7 @@ function LessonsSection({ children }) {
                     <Link to="/">
                         <Button
                             {...secondaryButtonProps(
-                                url == '/'
-                                    ? "contained"
-                                    : ""
+                                url == "/" ? "contained" : ""
                             )}
                         >
                             High School
@@ -70,9 +77,7 @@ function LessonsSection({ children }) {
                     <Link to="/college">
                         <Button
                             {...secondaryButtonProps(
-                                url.includes("/college")
-                                    ? "contained"
-                                    : ""
+                                url.includes("/college") ? "contained" : ""
                             )}
                         >
                             College

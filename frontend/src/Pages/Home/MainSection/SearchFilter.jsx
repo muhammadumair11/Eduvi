@@ -1,7 +1,6 @@
-
 import { ExpandMoreTwoTone, SearchTwoTone } from "@mui/icons-material";
-import CustomMenu from '../../../Components/CustomMenu';
-import { flexBox } from '../../../HelperPropFunctions/flexBox';
+import CustomMenu from "../../../Components/CustomMenu";
+import { flexBox } from "../../../HelperPropFunctions/flexBox";
 import {
     Button,
     Divider,
@@ -75,7 +74,7 @@ function SearchFilter() {
                         </MenuItem>
                     ))}
                 </CustomMenu>
-                <Divider orientation="vertical" variant="middle" flexItem />
+                <Divider orientation="vertical" variant="fullWidth" flexItem />
                 <TextField
                     variant="standard"
                     placeholder="Class/Course"
@@ -90,8 +89,6 @@ function SearchFilter() {
                         padding: 0.5,
                         marginTop: "0px !important",
                     }}
-
-
                     InputProps={{
                         endAdornment: (
                             <Button

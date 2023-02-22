@@ -4,14 +4,15 @@ import ClampLines from "react-clamp-lines";
 import { primaryHeadingBoldProps } from "../../HelperPropFunctions/typography";
 import { flexBox } from "../../HelperPropFunctions/flexBox";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
-function ProductCard({ title, link, description, logo }) {
+function SchoolCard({ title, link, description, logo }) {
     return (
         <Paper variant="outlined">
             <Link to={link}>
                 <Box padding={3} {...flexBox("center", "center", "column")}>
-                    <img src={logo} width="80" alt="" />
-                    {/* <LazyLoadImage src={logo} /> */}
+                    {/* <img src={logo} width="80" alt="" /> */}
+                    <LazyLoadImage src={logo} />
                     <Typography
                         {...primaryHeadingBoldProps({
                             variant: "h2",
@@ -28,8 +29,9 @@ function ProductCard({ title, link, description, logo }) {
                         color="grey"
                     >
                         <ClampLines
+                            id={title}
                             text={description}
-                            lines={3}
+                            lines={1}
                             buttons={false}
                             ellipsis="  Read more......"
                         />
@@ -50,4 +52,4 @@ function ProductCard({ title, link, description, logo }) {
     );
 }
 
-export default ProductCard;
+export default SchoolCard;

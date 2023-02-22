@@ -1,18 +1,23 @@
-
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 
 import frontImg from "../../../Assets/Images/homepage/front-img.png";
 import SearchFilter from "./SearchFilter";
 import SearchFilterMobile from "./SearchFilterMobile";
-import { flexBox } from '../../../HelperPropFunctions/flexBox';
-import { primaryHeadingBoldProps, primarySubtitleProps } from '../../../HelperPropFunctions/typography';
-import { MobileContainer, WebContainer } from '../../../Common/Wrapper/ResponsiveContainers';
+import { flexBox } from "../../../HelperPropFunctions/flexBox";
+import {
+    primaryHeadingBoldProps,
+    primarySubtitleProps,
+} from "../../../HelperPropFunctions/typography";
+import {
+    MobileContainer,
+    WebContainer,
+} from "../../../Common/Wrapper/ResponsiveContainers";
 
 function MainSection() {
     return (
         <Grid container>
-            <Grid item lg={6} paddingX={{ lg: 3 }} paddingY={{ lg: 5 }}>
+            <Grid item md={6} paddingX={{ lg: 3 }} paddingY={{ lg: 5 }}>
                 <Box
                     {...flexBox("space-between", "flex-start", "column")}
                     height="80%"
@@ -48,7 +53,7 @@ function MainSection() {
                     </MobileContainer>
                 </Box>
             </Grid>
-            <Grid item lg={6}>
+            <Grid item md={6}>
                 <img src={frontImg} width="100%" alt="" />
             </Grid>
         </Grid>

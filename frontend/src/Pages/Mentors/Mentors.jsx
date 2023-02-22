@@ -7,11 +7,12 @@ import {
     MenuItem,
     ListItemText,
 } from "@mui/material";
-import React, { Suspense } from "react";
+import React from "react";
 import PrimaryCard from "../../Components/PrimaryCard";
+
 import { flexBox } from "../../HelperPropFunctions/flexBox";
 
-import cardImage from "../../Assets/Images/subjects.png";
+import cardImage from "../../Assets/Images/mentorsprimarycard.png";
 import { Link, Outlet } from "react-router-dom";
 import NewsLetter from "../../Common/Newsletter/NewsLetter";
 import {
@@ -24,12 +25,8 @@ import {
     primaryHeadingBoldProps,
 } from "../../HelperPropFunctions/typography";
 import { ArrowDownward } from "@mui/icons-material";
-const FeaturedCourses = React.lazy(() =>
-    import("../../Common/FeaturedCourses/FeaturedCourses")
-);
-import Loader from "../../Components/Loader";
 
-function Courses() {
+function Mentors() {
     return (
         <Container>
             <Grid container>
@@ -49,7 +46,7 @@ function Courses() {
                                         fontWeight="bold"
                                         color="primary.light"
                                     >
-                                        All Courses
+                                        Eduvi has the qualified mentor
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={4}>
@@ -65,17 +62,17 @@ function Courses() {
                                 marginY: 4,
                             })}
                         >
-                            All Courses
+                            All Mentors
                         </Typography>
                     </MobileContainer>
                 </Grid>
 
-                {/* Courses Buttons List */}
+                {/* Mentors Buttons List */}
                 <Grid item xs={12} paddingY={2}>
                     <WebContainer>
                         <Stack direction="row" flexWrap="wrap" spacing={2}>
                             {/* Going through an array of Button's list */}
-                            {coursesLinks.map((item, index) => (
+                            {MentorsLinks.map((item, index) => (
                                 <Link key={index} to={item.link}>
                                     <Button
                                         variant={
@@ -95,7 +92,7 @@ function Courses() {
 
                     <MobileContainer>
                         <CustomMenu
-                            id="courses-list"
+                            id="Mentors-list"
                             title={
                                 <Button
                                     variant="contained"
@@ -117,7 +114,7 @@ function Courses() {
                                 },
                             }}
                         >
-                            {coursesLinks.map((el, i) => (
+                            {MentorsLinks.map((el, i) => (
                                 <MenuItem
                                     key={i}
                                     onClick={() =>
@@ -148,18 +145,13 @@ function Courses() {
                     </MobileContainer>
                 </Grid>
 
-                {/* Courses List */}
+                {/* Mentors List */}
                 <Grid item xs={12}>
                     <Grid container spacing={2}>
                         <Outlet />
                     </Grid>
                 </Grid>
-                <Grid item xs={12} marginY={2}>
-                    <Suspense fallback={<Loader />}>
-                        <FeaturedCourses />
-                    </Suspense>
-                </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} paddingY={4}>
                     <NewsLetter />
                 </Grid>
             </Grid>
@@ -167,35 +159,27 @@ function Courses() {
     );
 }
 
-const coursesLinks = [
+const MentorsLinks = [
     {
-        text: "All Courses",
-        link: "/courses",
+        text: "All Mentors",
+        link: "/Mentors",
     },
     {
-        text: "Kindergarten",
-        link: "/courses",
+        text: "For Kindergarten",
+        link: "/Mentors",
     },
     {
-        text: "High School",
-        link: "/courses",
+        text: "For High School",
+        link: "/Mentors",
     },
     {
-        text: "College",
-        link: "/courses",
+        text: "For College",
+        link: "/Mentors",
     },
     {
-        text: "Computer",
-        link: "/courses",
-    },
-    {
-        text: "Science",
-        link: "/courses",
-    },
-    {
-        text: "Engineering",
-        link: "/courses",
+        text: "For Technology",
+        link: "/Mentors",
     },
 ];
 
-export default Courses;
+export default Mentors;

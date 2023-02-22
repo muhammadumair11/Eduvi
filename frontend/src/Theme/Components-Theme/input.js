@@ -54,10 +54,9 @@ export const inputTextOutlinedInput = {
             color: customPrimaryColors.light,
         },
         sizeSmall: {
-            padding: ".8rem 1rem",
+            padding: ".5rem",
         },
         inputSizeSmall: {
-            fontSize: ".8rem",
             "&::placeholder": {
                 fontSize: ".8rem",
             },
@@ -67,14 +66,15 @@ export const inputTextOutlinedInput = {
             lineHeight: "0",
             margin: "0",
             padding: "0 1rem",
+            fontSize: ".8rem",
             "&::placeholder": {
                 fontWeight: "bold",
-                fontSize: "1rem",
+                fontSize: ".8rem",
             },
         },
         root: {
             borderRadius: "10px",
-            padding: "1rem 1.5rem",
+            padding: ".8rem 1rem",
         },
     },
 };

@@ -1,8 +1,16 @@
 import { ExpandMoreTwoTone, SearchTwoTone } from "@mui/icons-material";
-import { Button, MenuItem, Typography, TextField, Stack } from "@mui/material";
+import {
+    Button,
+    MenuItem,
+    Typography,
+    TextField,
+    Stack,
+    ListItemText,
+} from "@mui/material";
 import React from "react";
-import CustomMenu from '../../../Components/CustomMenu';
-import { flexBox } from '../../../HelperPropFunctions/flexBox';
+import CustomMenu from "../../../Components/CustomMenu";
+import { flexBox } from "../../../HelperPropFunctions/flexBox";
+import { primarySubtitleProps } from "../../../HelperPropFunctions/typography";
 
 function SearchFilterMobile() {
     return (
@@ -35,7 +43,31 @@ function SearchFilterMobile() {
                     </Button>
                 }
             >
-                <MenuItem>fjdalksjf</MenuItem>
+                {["KinderGarten", "School", "College"].map((el, i) => (
+                    <MenuItem
+                        key={i}
+                        onClick={() =>
+                            setFilter((prevState) => ({
+                                ...prevState,
+                                category: el,
+                            }))
+                        }
+                        sx={{
+                            minWidth: "200px",
+                        }}
+                    >
+                        <ListItemText>
+                            <Typography
+                                {...primarySubtitleProps({
+                                    light: "true",
+                                    fontWeight: "bold",
+                                })}
+                            >
+                                {el}
+                            </Typography>
+                        </ListItemText>
+                    </MenuItem>
+                ))}
             </CustomMenu>
             <TextField
                 variant="outlined"
