@@ -10,6 +10,8 @@ import { flexBox } from "../../HelperPropFunctions/flexBox";
 import cardImage from "../../Assets/Images/shop.png";
 import { primaryHeadingBoldProps } from "../../HelperPropFunctions/typography";
 import Aside from "./Aside";
+import MainSection from "./MainStoreSection/MainSection";
+import NewsLetter from "../../Common/Newsletter/NewsLetter";
 
 function Store() {
     return (
@@ -52,7 +54,12 @@ function Store() {
                 <Grid md={4}>
                     <Aside />
                 </Grid>
-                <Grid md={8}></Grid>
+                <Grid md={8}>
+                    <MainSection />
+                </Grid>
+                <Grid xs={12} marginY={4}>
+                    <NewsLetter />
+                </Grid>
             </Grid>
         </Container>
     );

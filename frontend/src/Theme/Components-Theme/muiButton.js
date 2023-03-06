@@ -14,8 +14,8 @@ export const muiButton = {
             maxWidth: "100%",
         },
         sizeSmall: {
-            padding: ".7rem 1.5rem",
-            fontSize: ".7rem",
+            padding: ".6rem 1rem",
+            fontSize: ".8rem",
         },
         sizeMedium: {
             padding: ".9rem 2rem",

@@ -21,7 +21,6 @@ import logo from "../../Assets/Images/logo.svg";
 import cart from "../../Assets/Images/cart.svg";
 import profile from "../../Assets/Images/profile.svg";
 
-
 import {
     AccountCircleTwoTone,
     LoginTwoTone,
@@ -53,7 +52,7 @@ function NavbarMobile() {
         opacity: open ? 1 : 0,
 
         onChange: () => ({
-            zIndex: open ? 1 : -100,
+            zIndex: open ? 5 : -100,
         }),
     });
 

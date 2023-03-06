@@ -1,8 +1,8 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 import { primaryHeadingBoldProps } from "../../HelperPropFunctions/typography";
-import HorizontalCourseCard from "../CourseCards/HorizontalCourseCard";
-import Filter from "./Filter";
+import Filter from "../Filter/Filter";
+import HorizontalCourseCard from "../Cards/CourseCard/HorizontalCourseCard";
 
 function FeaturedCourses() {
     return (

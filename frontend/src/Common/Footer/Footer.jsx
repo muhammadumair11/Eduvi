@@ -1,10 +1,10 @@
 import { Box, Container, Grid, Stack, styled, Typography } from "@mui/material";
 import React from "react";
-import { Icon } from "@iconify/react";
 import logo from "../../Assets/Images/logo.svg";
 import FooterList from "./FooterList";
 import footerData from "./footerlist.json";
-import {primarySubtitleProps} from "../../HelperPropFunctions/typography"
+import { primarySubtitleProps } from "../../HelperPropFunctions/typography";
+import { CustomIcon } from "../Wrapper/IconWrapper";
 
 const Icons = {
     options: {
@@ -13,26 +13,6 @@ const Icons = {
     },
     icons: ["ri:facebook-fill", "mdi:instagram", "mdi:twitter", "mdi:linkedin"],
 };
-
-const CustomIcon = styled(Icon)(({ theme }) => ({
-    padding: "3px",
-    borderRadius: 100,
-
-    color: theme.palette.primary.light,
-
-    transition: theme.transitions.create(
-        ["background-color", "color", "transform"],
-        {
-            duration: theme.transitions.duration.complex,
-        }
-    ),
-
-    ":hover": {
-        color: "white",
-        transform: "scale(1.2)",
-        background: theme.palette.secondary.main,
-    },
-}));
 
 function Footer() {
     return (

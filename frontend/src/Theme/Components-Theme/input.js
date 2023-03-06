@@ -54,7 +54,7 @@ export const inputTextOutlinedInput = {
             color: customPrimaryColors.light,
         },
         sizeSmall: {
-            padding: ".5rem",
+            padding: ".3rem",
         },
         inputSizeSmall: {
             "&::placeholder": {

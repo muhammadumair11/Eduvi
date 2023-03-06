@@ -1,11 +1,10 @@
-
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 
 import teacherImg from "../../Assets/Images/homepage/teacher-img.png";
-import { WebContainer } from '../../Common/Wrapper/ResponsiveContainers';
-import { primaryHeadingBoldProps } from '../../HelperPropFunctions/typography';
-import { flexBox } from '../../HelperPropFunctions/flexBox';
+import { WebContainer } from "../../Common/Wrapper/ResponsiveContainers";
+import { primaryHeadingBoldProps } from "../../HelperPropFunctions/typography";
+import { flexBox } from "../../HelperPropFunctions/flexBox";
 import { Link } from "react-router-dom";
 
 function JoinTeacherSection() {
@@ -38,7 +37,7 @@ function JoinTeacherSection() {
                         standardized meaning for high-definition, generally any
                         video.
                     </Typography>
-                    <Link>
+                    <Link to={"/joinasmentor"}>
                         <Button
                             size="large"
                             variant="contained"

@@ -1,7 +1,10 @@
 import { Box, Grid, Typography, Button, Paper, styled } from "@mui/material";
 import React from "react";
-import { primaryHeadingBoldProps, primarySubtitleProps } from '../../HelperPropFunctions/typography';
-import { PrimaryCardWrapper } from '../../Common/Wrapper/PrimaryCardWrapper';
+import {
+    primaryHeadingBoldProps,
+    primarySubtitleProps,
+} from "../../HelperPropFunctions/typography";
+import { PrimaryCardWrapper } from "../../Common/Wrapper/PrimaryCardWrapper";
 import { Link } from "react-router-dom";
 
 const BgImgWrapper = styled("div", {
@@ -44,7 +47,7 @@ function ClassesSection() {
                         scan lines or 576 vertical lines is considered
                         high-definition.
                     </Typography>
-                    <Link>
+                    <Link to={"/courses"}>
                         <Button
                             size="large"
                             variant="contained"

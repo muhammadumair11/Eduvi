@@ -22,7 +22,12 @@ const HighSchoolCardList = React.lazy(() =>
     import("../Common/HighSchoolCardList/HighSchoolCardList")
 );
 
+const Pricing = React.lazy(() => import("../Pages/Pricing/Pricing"));
+
 const Store = React.lazy(() => import("../Pages/Store/Store"));
+import JoinAsMentor from "../Pages/Mentors/JoinAsMentor";
+import SingleMentor from "../Pages/Mentors/SingleMentor";
+import CourseDashboard from "../Pages/CourseDashboard/CourseDashboard";
 
 const router = createBrowserRouter([
     {
@@ -63,6 +68,12 @@ const router = createBrowserRouter([
                 ],
             },
             {
+                path: "/courses/1",
+                element: <CourseDashboard />,
+            },
+
+            // Mentors
+            {
                 path: "/mentors",
                 element: <Mentors />,
                 children: [
@@ -76,6 +87,14 @@ const router = createBrowserRouter([
                     },
                 ],
             },
+            {
+                path: "/joinasmentor",
+                element: <JoinAsMentor />,
+            },
+            {
+                path: "/mentor/:id",
+                element: <SingleMentor />,
+            },
 
             // Store
             {
@@ -83,6 +102,15 @@ const router = createBrowserRouter([
                 element: (
                     <Suspense fallback={<Loader />}>
                         <Store />
+                    </Suspense>
+                ),
+            },
+            // Pricing
+            {
+                path: "/pricing",
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <Pricing />
                     </Suspense>
                 ),
             },

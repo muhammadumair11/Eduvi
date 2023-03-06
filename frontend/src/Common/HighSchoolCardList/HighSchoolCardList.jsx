@@ -9,7 +9,7 @@ import class5 from "../../Assets/Images/class-icons/5.svg";
 import class6 from "../../Assets/Images/class-icons/6.svg";
 import class7 from "../../Assets/Images/class-icons/7.svg";
 import class8 from "../../Assets/Images/class-icons/8.svg";
-import SchoolCard from "../SchoolCard/SchoolCard";
+import SchoolCard from "../Cards/SchoolCard/SchoolCard";
 
 function HighSchoolCardList() {
     return CardDetails.map((el, i) => {

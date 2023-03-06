@@ -8,9 +8,6 @@ import {
     ListItemText,
 } from "@mui/material";
 import React from "react";
-import PrimaryCard from "../../Components/PrimaryCard";
-
-import { flexBox } from "../../HelperPropFunctions/flexBox";
 
 import cardImage from "../../Assets/Images/mentorsprimarycard.png";
 import { Link, Outlet } from "react-router-dom";
@@ -20,51 +17,24 @@ import {
     WebContainer,
 } from "../../Common/Wrapper/ResponsiveContainers";
 import CustomMenu from "../../Components/CustomMenu";
-import {
-    primarySubtitleProps,
-    primaryHeadingBoldProps,
-} from "../../HelperPropFunctions/typography";
+import { primarySubtitleProps } from "../../HelperPropFunctions/typography";
 import { ArrowDownward } from "@mui/icons-material";
+import PageHeader from "../../Common/PageHeader/PageHeader";
 
 function Mentors() {
     return (
         <Container>
             <Grid container>
-                {/* Primary Card */}
-
                 <Grid item xs={12}>
-                    <WebContainer>
-                        <PrimaryCard>
-                            <Grid container>
-                                <Grid
-                                    item
-                                    xs={6}
-                                    {...flexBox("center", "center")}
-                                >
-                                    <Typography
-                                        variant="h1"
-                                        fontWeight="bold"
-                                        color="primary.light"
-                                    >
-                                        Eduvi has the qualified mentor
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <img src={cardImage} width="100%" alt="" />
-                                </Grid>
-                                <Grid item xs={2}></Grid>
-                            </Grid>
-                        </PrimaryCard>
-                    </WebContainer>
-                    <MobileContainer>
-                        <Typography
-                            {...primaryHeadingBoldProps({
-                                marginY: 4,
-                            })}
-                        >
-                            All Mentors
-                        </Typography>
-                    </MobileContainer>
+                    <PageHeader
+                        titleText={
+                            <div>
+                                Eduvi has the <br /> qualified mentor
+                            </div>
+                        }
+                        mobileTitle="All Mentors"
+                        image={cardImage}
+                    />
                 </Grid>
 
                 {/* Mentors Buttons List */}

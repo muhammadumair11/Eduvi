@@ -1,9 +1,6 @@
-
+import { ScrollWrapper } from "../../Common/Wrapper/ScrollWrapper";
 import { Box, Paper, Typography } from "@mui/material";
 import React from "react";
-import { flexBox } from "../../HelperPropFunctions/flexBox";
-import { primarySubtitleProps } from "../../HelperPropFunctions/typography";
-import { ScrollWrapper } from '../Wrapper/ScrollWrapper';
 import {
     ImageWrapper,
     TumbnailImage,
@@ -34,7 +31,7 @@ function SliderThumbnail({
                                 : theme.palette.action.disabledBackground,
                     })}
                 >
-                    <Box {...flexBox("flex-start", "", "")}>
+                    <Box display="flex" justifyContent="flex-start">
                         <TumbnailImage>
                             <ImageWrapper
                                 size="cover"
@@ -44,10 +41,9 @@ function SliderThumbnail({
                         </TumbnailImage>
                         <Box padding=".5rem">
                             <Typography
-                                {...primarySubtitleProps({
-                                    light: "true",
-                                    fontWeight: "bold",
-                                })}
+                                variant="subtitle1"
+                                fontWeight="bold"
+                                color="primary.light"
                             >
                                 {"Slide 1 jfkldasjf kldsaj".slice(0, 30)}
                             </Typography>

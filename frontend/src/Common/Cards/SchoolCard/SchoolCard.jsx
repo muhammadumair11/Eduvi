@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Box, Paper, Typography, Button } from "@mui/material";
 import ClampLines from "react-clamp-lines";
-import { primaryHeadingBoldProps } from "../../HelperPropFunctions/typography";
-import { flexBox } from "../../HelperPropFunctions/flexBox";
+import { primaryHeadingBoldProps } from "../../../HelperPropFunctions/typography";
+import { flexBox } from "../../../HelperPropFunctions/flexBox";
 import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 

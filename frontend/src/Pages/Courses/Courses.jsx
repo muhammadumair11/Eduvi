@@ -28,6 +28,7 @@ const FeaturedCourses = React.lazy(() =>
     import("../../Common/FeaturedCourses/FeaturedCourses")
 );
 import Loader from "../../Components/Loader";
+import PageHeader from "../../Common/PageHeader/PageHeader";
 
 function Courses() {
     return (
@@ -36,38 +37,11 @@ function Courses() {
                 {/* Primary Card */}
 
                 <Grid item xs={12}>
-                    <WebContainer>
-                        <PrimaryCard>
-                            <Grid container>
-                                <Grid
-                                    item
-                                    xs={6}
-                                    {...flexBox("center", "center")}
-                                >
-                                    <Typography
-                                        variant="h1"
-                                        fontWeight="bold"
-                                        color="primary.light"
-                                    >
-                                        All Courses
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <img src={cardImage} width="100%" alt="" />
-                                </Grid>
-                                <Grid item xs={2}></Grid>
-                            </Grid>
-                        </PrimaryCard>
-                    </WebContainer>
-                    <MobileContainer>
-                        <Typography
-                            {...primaryHeadingBoldProps({
-                                marginY: 4,
-                            })}
-                        >
-                            All Courses
-                        </Typography>
-                    </MobileContainer>
+                    <PageHeader
+                        titleText="All Courses"
+                        mobileTitle="All Courses"
+                        image={cardImage}
+                    />
                 </Grid>
 
                 {/* Courses Buttons List */}

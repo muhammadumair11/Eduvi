@@ -11,12 +11,13 @@ import {
 import React from "react";
 import ClampLines from "react-clamp-lines";
 
-import image from "../../Assets/Images/mentor-images/1.png";
+import image from "../../../Assets/Images/mentor-images/1.png";
+import { flexBox } from "../../../HelperPropFunctions/flexBox";
 import {
     primaryHeadingBoldProps,
     primarySubtitleProps,
     secondaryHeadingBoldProps,
-} from "../../HelperPropFunctions/typography";
+} from "../../../HelperPropFunctions/typography";
 
 const BackgroundImage = styled("div")(({ theme }) => ({
     height: "auto",
@@ -54,11 +55,7 @@ function HorizontalCourseCard() {
                     </Box>
 
                     <Rating value={4} />
-                    <Box
-                        display="flex"
-                        justifyContent="space-between"
-                        alignItems="center"
-                    >
+                    <Box {...flexBox("space-between", "center")}>
                         <Typography
                             {...secondaryHeadingBoldProps({
                                 variant: "h4",

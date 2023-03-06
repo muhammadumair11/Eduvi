@@ -13,6 +13,7 @@ import {
 import CustomMenu from "../../Components/CustomMenu";
 import OutlinedInputBtn from "../../Components/OutlinedInputBtn";
 import { primarySubtitleProps } from "../../HelperPropFunctions/typography";
+import { flexBox } from "../../HelperPropFunctions/flexBox";
 
 function Filter() {
     return (
@@ -42,10 +43,9 @@ function Filter() {
                     title={
                         <Paper elevation={0}>
                             <Box
-                                display="flex"
-                                alignItems="center"
+                                {...flexBox("", "center")}
                                 paddingLeft={2}
-                                paddingY={0.3}
+                                paddingY={0}
                             >
                                 <Typography
                                     {...primarySubtitleProps({
@@ -59,12 +59,12 @@ function Filter() {
                                     variant="text"
                                     fullWidth
                                     color="primary"
+                                    size="medium"
+                                    disableRipple
                                 >
                                     <Box
-                                        display="flex"
                                         width="100%"
-                                        justifyContent="space-between"
-                                        alignItems="center"
+                                        {...flexBox("space-between", "center")}
                                     >
                                         Filter
                                         <ArrowDownwardTwoTone />

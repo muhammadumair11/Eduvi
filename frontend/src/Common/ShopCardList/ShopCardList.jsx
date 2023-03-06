@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import MentorCard from "../Cards/MentorCard/MentorCard";
+import ShopCard from "../Cards/ShopCard/ShopCard";
 
 import image1 from "../../Assets/Images/mentor-images/1.png";
 import image2 from "../../Assets/Images/mentor-images/2.png";
@@ -15,13 +15,13 @@ import image10 from "../../Assets/Images/mentor-images/10.png";
 import image11 from "../../Assets/Images/mentor-images/11.png";
 import image12 from "../../Assets/Images/mentor-images/12.png";
 
-function MentorsCardList() {
+function ShopCardList() {
     return MentorsList.map((item, index) => (
-        <Grid key={index} item lg={3} md={3} sm={6} xs={12}>
-            <MentorCard
+        <Grid key={index} item lg={4} xs={12}>
+            <ShopCard
                 image={item.image}
                 title={item.title}
-                link="/mentor/1"
+                link="/something"
                 role={item.role}
             />
         </Grid>
@@ -91,4 +91,4 @@ const MentorsList = [
     },
 ];
 
-export default MentorsCardList;
+export default ShopCardList;

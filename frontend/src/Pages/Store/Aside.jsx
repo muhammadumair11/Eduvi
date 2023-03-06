@@ -1,20 +1,12 @@
-import { Box, Typography } from "@mui/material";
-import React from "react";
-import HorizontalShopCard from "../../Common/ShopCards/HorizontalShopCard";
-import { primaryHeadingBoldProps } from "../../HelperPropFunctions/typography";
+import { Stack } from "@mui/material";
+import AsideSection from "./AsideSection";
 
 function Aside() {
     return (
-        <Box>
-            <Typography
-                {...primaryHeadingBoldProps({
-                    variant: "h3",
-                })}
-            >
-                Popular Books
-            </Typography>
-            <HorizontalShopCard />
-        </Box>
+        <Stack direction="column" spacing={3}>
+            <AsideSection title="Popular Books" moreLink="#" />
+            <AsideSection title="New Arrivals" moreLink="#" />
+        </Stack>
     );
 }
 

@@ -26,7 +26,7 @@ function OutlinedInput({ label, placeholder, startIcon, endIcon, type }) {
                     }}
                     placeholder={placeholder}
                     variant="outlined"
-                    size="small"
+                    size="medium"
                 />
             </FormGroup>
             <FormHelperText></FormHelperText>
