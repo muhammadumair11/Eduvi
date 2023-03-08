@@ -14,4 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post("login");
+Route::post("login", ["UserController@login"]);
+
+
+
