@@ -45,6 +45,7 @@ export default function CustomMenu({ id, title, children, position, tooltip }) {
                         overflow: "visible",
                         filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
                         mt: 1.5,
+                        padding: 0.4,
                         "& .MuiMenu-list": {
                             padding: 0,
                         },

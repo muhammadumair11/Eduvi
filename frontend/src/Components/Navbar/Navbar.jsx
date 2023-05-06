@@ -35,15 +35,34 @@ import {
     PersonAddTwoTone,
     ShoppingCartTwoTone,
 } from "@mui/icons-material";
-import { IconWrapper } from '../../Common/Wrapper/IconWrapper';
-import { flexBox } from '../../HelperPropFunctions/flexBox';
+import { IconWrapper } from "../../Common/Wrapper/IconWrapper";
+import { flexBox } from "../../HelperPropFunctions/flexBox";
 import { primarySubtitleProps } from "../../HelperPropFunctions/typography";
 import { Link } from "react-router-dom";
+import { useLogout } from "../../Features/auth/authApiSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut, selectCurrentToken } from "../../Features/auth/authSlice";
+import CustomAlert from "../CustomAlert";
 
-function Navbar() {
-    const [auth, setAuth] = useState(true);
+function Navbar({ auth }) {
+    const [logout, { isSuccess }] = useLogout();
+    const dispatch = useDispatch();
+    const token = useSelector(selectCurrentToken);
+
+    const handleLogout = async () => {
+        const { data } = await logout();
+        if (data.logout) {
+            dispatch(logOut());
+        }
+    };
+
+    const successAlert = (
+        <CustomAlert message={"Logout Successful"} severity="success" />
+    );
+
     return (
         <Container>
+            {isSuccess && successAlert}
             <StyledNavbar>
                 <Link
                     to="/"
@@ -127,7 +146,7 @@ function Navbar() {
                                                     fontWeight: "bold",
                                                 }}
                                             >
-                                                Muhammad Umair
+                                                {auth.name}
                                             </NavLink>
                                             <Typography
                                                 fontWeight="bold"
@@ -136,7 +155,7 @@ function Navbar() {
                                                     light: "true",
                                                 })}
                                             >
-                                                Student
+                                                {auth.user_type}
                                             </Typography>
                                         </Box>
                                     </Box>
@@ -167,16 +186,19 @@ function Navbar() {
                                         Account
                                     </NavLink>
                                 </MenuItem>
-                                <MenuItem>
-                                    <NavLink
-                                        typographyProps={{
-                                            variant: "h6",
-                                            fontWeight: "bold",
-                                        }}
-                                        icon={<LogoutTwoTone />}
+                                <MenuItem onClick={handleLogout}>
+                                    <Typography
+                                        variant="h6"
+                                        {...flexBox("", "center")}
+                                        fontWeight="bold"
                                     >
+                                        {
+                                            <LogoutTwoTone
+                                                sx={{ marginRight: 1 }}
+                                            />
+                                        }{" "}
                                         Logout
-                                    </NavLink>
+                                    </Typography>
                                 </MenuItem>
                             </CustomMenu>
                         ) : (
@@ -198,7 +220,7 @@ function Navbar() {
                                 <AccountWrapper>
                                     <Box {...flexBox("center", "", "")}>
                                         <Box padding={1}>
-                                            <Link href="/login">
+                                            <Link to="/login">
                                                 <Button
                                                     variant="contained"
                                                     size="small"

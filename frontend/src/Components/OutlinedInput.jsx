@@ -8,7 +8,14 @@ import {
 } from "@mui/material";
 import React from "react";
 
-function OutlinedInput({ label, placeholder, startIcon, endIcon, type }) {
+function OutlinedInput({
+    label,
+    placeholder,
+    startIcon,
+    endIcon,
+    type,
+    onChange,
+}) {
     return (
         <FormControl fullWidth component="fieldset" margin="normal">
             <FormLabel component="legend" color="primary">
@@ -17,6 +24,7 @@ function OutlinedInput({ label, placeholder, startIcon, endIcon, type }) {
             <FormGroup>
                 <TextField
                     type={type || "text"}
+                    onChange={onChange}
                     InputProps={{
                         startAdornment: startIcon || null,
                         sx: {

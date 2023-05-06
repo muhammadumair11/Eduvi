@@ -11,13 +11,34 @@ import {
     VisibilityTwoTone,
 } from "@mui/icons-material";
 import { useState } from "react";
-import OutlinedInput from '../../Components/OutlinedInput';
-import CustomCheckbox from '../../Components/CustomCheckbox';
-import { WebContainer } from '../../Common/Wrapper/ResponsiveContainers';
-import NavLink from '../../Components/NavLink';
+import OutlinedInput from "../../Components/OutlinedInput";
+import CustomCheckbox from "../../Components/CustomCheckbox";
+import { WebContainer } from "../../Common/Wrapper/ResponsiveContainers";
+import { Link, useNavigate } from "react-router-dom";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { useRegisterMutation } from "../../Features/auth/authApiSlice";
+import { setCredentials } from "../../Features/auth/authSlice";
+import CustomAlert from "../../Components/CustomAlert";
+import { useDispatch } from "react-redux";
 
 export default function Signup({ status, canResetPassword }) {
+    const [register, { isLoading, isSuccess, isError }] = useRegisterMutation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [registerDetail, setRegisterDetails] = useState({
+        name: "",
+        email: "",
+        password: "",
+    });
+    const [acceptTerms, setAcceptTerms] = useState(false);
     const [passVisibility, setPassVisibility] = useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const userData = await register(registerDetail).unwrap();
+        dispatch(setCredentials({ ...userData }));
+        navigate("/");
+    };
 
     return (
         <Container>
@@ -36,17 +57,38 @@ export default function Signup({ status, canResetPassword }) {
                         <OutlinedInput
                             label="Full name"
                             placeholder="Enter your full name"
+                            value={registerDetail.name}
+                            onChange={(e) =>
+                                setRegisterDetails({
+                                    ...registerDetail,
+                                    name: e.target.value,
+                                })
+                            }
                             startIcon={<PersonTwoTone />}
                         />
                         <OutlinedInput
                             type="email"
                             label="Email"
+                            value={registerDetail.email}
+                            onChange={(e) =>
+                                setRegisterDetails({
+                                    ...registerDetail,
+                                    email: e.target.value,
+                                })
+                            }
                             placeholder="Enter your email address"
                             startIcon={<EmailTwoTone />}
                         />
                         <OutlinedInput
                             type={passVisibility ? "text" : "password"}
                             label="Password"
+                            value={registerDetail.password}
+                            onChange={(e) =>
+                                setRegisterDetails({
+                                    ...registerDetail,
+                                    password: e.target.value,
+                                })
+                            }
                             placeholder={
                                 passVisibility
                                     ? "Enter your password"
@@ -66,6 +108,8 @@ export default function Signup({ status, canResetPassword }) {
                             }
                         />
                         <CustomCheckbox
+                            value={acceptTerms}
+                            onChange={() => setAcceptTerms(!acceptTerms)}
                             label={
                                 <Typography
                                     variant="subtitle1"
@@ -83,12 +127,15 @@ export default function Signup({ status, canResetPassword }) {
                                 </Typography>
                             }
                         />
-                        <Button
+                        <LoadingButton
                             fullWidth
                             sx={{ marginY: 2 }}
                             variant="contained"
+                            loading={isLoading}
                             size="medium"
                             color="primary"
+                            onClick={handleSubmit}
+                            disabled={!acceptTerms}
                         >
                             <Typography
                                 fontWeight="bold"
@@ -98,22 +145,13 @@ export default function Signup({ status, canResetPassword }) {
                             >
                                 Sign up
                             </Typography>
-                        </Button>
+                        </LoadingButton>
                         <Typography
                             variant="subtitle2"
                             textAlign="center"
                             color="primary.light"
                         >
-                            Already have an account?{" "}
-                            <NavLink
-                                href={"/login"}
-                                typographyProps={{
-                                    fontWeight: "bold",
-                                    component: "span",
-                                }}
-                            >
-                                Sign in
-                            </NavLink>
+                            Already have an account? <Link to="/">Sign in</Link>
                         </Typography>
                     </Box>
                 </Grid>
@@ -140,6 +178,20 @@ export default function Signup({ status, canResetPassword }) {
                     </WebContainer>
                 </Grid>
             </Grid>
+            {isError && (
+                <CustomAlert
+                    message={
+                        "Sign up Failed, Please Check your email and passport"
+                    }
+                    severity="error"
+                />
+            )}
+            {isSuccess && (
+                <CustomAlert
+                    message={"Sign in Successful"}
+                    severity="success"
+                />
+            )}
         </Container>
     );
 }

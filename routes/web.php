@@ -13,3 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('dashboard');
+});
+Route::get('/form', function () {
+    return view('form');
+});
+Route::get('/table', function () {
+    return view('table');
+});
+Route::get('/datatables', function () {
+    return view('datatables');
+});
+Route::get('/userlist', function () {
+    return view('userlist');
+});

@@ -8,9 +8,6 @@ import Courses from "../Pages/Courses/Courses";
 import Mentors from "../Pages/Mentors/Mentors";
 import Loader from "../Components/Loader";
 
-const Login = React.lazy(() => import("../Pages/Auth/Login"));
-const Register = React.lazy(() => import("../Pages/Auth/Register"));
-
 const HighSchool = React.lazy(() =>
     import("../Pages/Home/LessonSection/HighSchool")
 );
@@ -22,12 +19,17 @@ const HighSchoolCardList = React.lazy(() =>
     import("../Common/HighSchoolCardList/HighSchoolCardList")
 );
 
+const Login = React.lazy(() => import("../Pages/Auth/Login"));
+const Register = React.lazy(() => import("../Pages/Auth/Register"));
+
 const Pricing = React.lazy(() => import("../Pages/Pricing/Pricing"));
 
 const Store = React.lazy(() => import("../Pages/Store/Store"));
 import JoinAsMentor from "../Pages/Mentors/JoinAsMentor";
 import SingleMentor from "../Pages/Mentors/SingleMentor";
 import CourseDashboard from "../Pages/CourseDashboard/CourseDashboard";
+import PrivateRoutes from "./PrivateRoutes";
+import PublicRoutes from "./PublicRoutes";
 
 const router = createBrowserRouter([
     {
@@ -93,12 +95,12 @@ const router = createBrowserRouter([
             },
             {
                 path: "/mentor/:id",
-                element: <SingleMentor />,
+                element: <PrivateRoutes element={<SingleMentor />} />,
             },
 
             // Store
             {
-                path: "/store",
+                path: "/product-store",
                 element: (
                     <Suspense fallback={<Loader />}>
                         <Store />
@@ -117,17 +119,25 @@ const router = createBrowserRouter([
             {
                 path: "login",
                 element: (
-                    <Suspense fallback={<Loader />}>
-                        <Login />
-                    </Suspense>
+                    <PublicRoutes
+                        element={
+                            <Suspense fallback={<Loader />}>
+                                <Login />
+                            </Suspense>
+                        }
+                    />
                 ),
             },
             {
                 path: "register",
                 element: (
-                    <Suspense fallback={<Loader />}>
-                        <Register />
-                    </Suspense>
+                    <PublicRoutes
+                        element={
+                            <Suspense fallback={<Loader />}>
+                                <Register />
+                            </Suspense>
+                        }
+                    />
                 ),
             },
         ],
