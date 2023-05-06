@@ -16,6 +16,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('dashboard');
 });
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+Route::get('/profile', function () {
+    return view('profile');
+});
+Route::get('/loign', function () {
+    return view('login');
+});
+Route::get('/register', function () {
+    return view('register');
+});
+Route::get('/formadvance', function () {
+    return view('formadvance');
+});
+
+
 Route::get('/form', function () {
     return view('form');
 });
