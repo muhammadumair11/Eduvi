@@ -51,26 +51,19 @@
 						<div class="single-page">
 							<div class="">
 								<div class="wrapper wrapper2">
-									<form id="login" class="card-body" tabindex="500">
+									<form id="login" method="POST" action="{{ url('login') }}" class="card-body" tabindex="500">
+                                        @csrf
 										<h3 class="text-dark">Login</h3>
 										<div class="mail">
-											<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+											<input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
 										</div>
 										<div class="passwd">
-											<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+											<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 										</div>
-										<p class="mb-3 text-right"><a href="forgot.html">Forgot Password</a></p>
 										<div class="submit">
-											<a class="btn btn-primary btn-block" href="index.html">Login</a>
-										</div>
-										<div class="signup mb-0" >
-											<p class="text-dark mb-0">Don't have account?<a href="register.html" class="text-primary ml-1">Sign UP</a></p>
+											<button class="btn btn-primary btn-block" type="submit" >Login</button>
 										</div>
 									</form>
-									<div class="card-body border-top">
-										<a class="btn  btn-social btn-facebook btn-block"><i class="fa fa-facebook"></i>Sign in with Facebook</a>
-										<a class="btn  btn-social btn-google btn-block"><i class="fa fa-google-plus"></i>Sign in with Google</a>
-									</div>
 								</div>
 							</div>
 						</div>

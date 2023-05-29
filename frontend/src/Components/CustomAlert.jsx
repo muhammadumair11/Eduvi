@@ -15,7 +15,7 @@ function CustomAlert({ message, severity }) {
             TransitionComponent={transition}
             autoHideDuration={3000}
             onClose={() => setOpen(false)}
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
         >
             <Alert severity={severity} fontWeight="bold">
                 {message}

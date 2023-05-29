@@ -34,7 +34,6 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const userData = await login(loginDetails).unwrap();
-        console.log(userData);
         dispatch(setCredentials({ ...userData }));
         navigate("/");
     };

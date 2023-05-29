@@ -16,7 +16,7 @@ const MentorsCardList = React.lazy(() =>
     import("../Common/MentorsCardList/MentorsCardList")
 );
 const HighSchoolCardList = React.lazy(() =>
-    import("../Common/HighSchoolCardList/HighSchoolCardList")
+    import("../Common/SubCategoryCardList/SubCategoryCardList")
 );
 
 const Login = React.lazy(() => import("../Pages/Auth/Login"));
@@ -30,6 +30,7 @@ import SingleMentor from "../Pages/Mentors/SingleMentor";
 import CourseDashboard from "../Pages/CourseDashboard/CourseDashboard";
 import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
+import Account from "../Pages/Account/Account";
 
 const router = createBrowserRouter([
     {
@@ -58,16 +59,6 @@ const router = createBrowserRouter([
             {
                 path: "/courses",
                 element: <Courses />,
-                children: [
-                    {
-                        path: "/courses",
-                        element: (
-                            <Suspense fallback={<Loader />}>
-                                <HighSchoolCardList />
-                            </Suspense>
-                        ),
-                    },
-                ],
             },
             {
                 path: "/courses/1",
@@ -116,8 +107,16 @@ const router = createBrowserRouter([
                     </Suspense>
                 ),
             },
+
+            // Account
+
             {
-                path: "login",
+                path: "/account",
+                element: <PrivateRoutes element={<Account />} />,
+            },
+
+            {
+                path: "/login",
                 element: (
                     <PublicRoutes
                         element={
@@ -129,7 +128,7 @@ const router = createBrowserRouter([
                 ),
             },
             {
-                path: "register",
+                path: "/register",
                 element: (
                     <PublicRoutes
                         element={

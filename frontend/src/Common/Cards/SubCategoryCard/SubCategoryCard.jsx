@@ -6,7 +6,7 @@ import { flexBox } from "../../../HelperPropFunctions/flexBox";
 import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-function SchoolCard({ title, link, description, logo }) {
+function SubCategoryCard({ title, link, description, logo }) {
     return (
         <Paper variant="outlined">
             <Link to={link}>
@@ -52,4 +52,4 @@ function SchoolCard({ title, link, description, logo }) {
     );
 }
 
-export default SchoolCard;
+export default SubCategoryCard;

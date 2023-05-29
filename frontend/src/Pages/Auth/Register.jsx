@@ -26,6 +26,7 @@ export default function Signup({ status, canResetPassword }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [registerDetail, setRegisterDetails] = useState({
+        username: "",
         name: "",
         email: "",
         password: "",
@@ -54,6 +55,18 @@ export default function Signup({ status, canResetPassword }) {
                         >
                             Sign up
                         </Typography>
+                        <OutlinedInput
+                            label="Username"
+                            placeholder="Enter your username"
+                            value={registerDetail.username}
+                            onChange={(e) =>
+                                setRegisterDetails({
+                                    ...registerDetail,
+                                    username: e.target.value,
+                                })
+                            }
+                            startIcon={<PersonTwoTone />}
+                        />
                         <OutlinedInput
                             label="Full name"
                             placeholder="Enter your full name"

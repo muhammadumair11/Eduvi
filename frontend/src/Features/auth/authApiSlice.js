@@ -16,6 +16,17 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 body: { ...credentials },
             }),
         }),
+        update: builder.mutation({
+            query: (credentials) => ({
+                url: `/update`,
+                method: "POST",
+                body: credentials,
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }),
+        }),
         refresh: builder.query({
             query: () => ({
                 url: "/refresh",
@@ -34,8 +45,12 @@ export const authApiSlice = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useLoginMutation, useRefreshQuery, useRegisterMutation } =
-    authApiSlice;
+export const {
+    useLoginMutation,
+    useRefreshQuery,
+    useRegisterMutation,
+    useUpdateMutation,
+} = authApiSlice;
 export const useLogout = () => {
     return authApiSlice.useLogoutMutation();
 };

@@ -40,8 +40,8 @@ function Mentors() {
                 {/* Mentors Buttons List */}
                 <Grid item xs={12} paddingY={2}>
                     <WebContainer>
-                        <Stack direction="row" flexWrap="wrap" spacing={2}>
-                            {/* Going through an array of Button's list */}
+                        {/* Going through an array of Button's list */}
+                        {/* <Stack direction="row" flexWrap="wrap" spacing={2}>
                             {MentorsLinks.map((item, index) => (
                                 <Link key={index} to={item.link}>
                                     <Button
@@ -57,11 +57,11 @@ function Mentors() {
                                     </Button>
                                 </Link>
                             ))}
-                        </Stack>
+                        </Stack> */}
                     </WebContainer>
 
                     <MobileContainer>
-                        <CustomMenu
+                        {/* <CustomMenu
                             id="Mentors-list"
                             title={
                                 <Button
@@ -111,7 +111,7 @@ function Mentors() {
                                     </ListItemText>
                                 </MenuItem>
                             ))}
-                        </CustomMenu>
+                        </CustomMenu> */}
                     </MobileContainer>
                 </Grid>
 

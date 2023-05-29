@@ -1,4 +1,3 @@
-import { Person2Rounded } from "@mui/icons-material";
 import { Checkbox, FormControlLabel, FormGroup, styled } from "@mui/material";
 import React from "react";
 

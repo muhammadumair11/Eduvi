@@ -3,18 +3,20 @@ import {
     FormGroup,
     FormHelperText,
     FormLabel,
-    IconButton,
     TextField,
 } from "@mui/material";
 import React from "react";
 
-function OutlinedInput({
+export default function OutlinedInput({
     label,
     placeholder,
     startIcon,
     endIcon,
     type,
     onChange,
+    value,
+    disabled = false,
+    ...props
 }) {
     return (
         <FormControl fullWidth component="fieldset" margin="normal">
@@ -25,6 +27,9 @@ function OutlinedInput({
                 <TextField
                     type={type || "text"}
                     onChange={onChange}
+                    disabled={disabled}
+                    {...props}
+                    value={value}
                     InputProps={{
                         startAdornment: startIcon || null,
                         sx: {
@@ -41,5 +46,3 @@ function OutlinedInput({
         </FormControl>
     );
 }
-
-export default OutlinedInput;

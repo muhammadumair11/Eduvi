@@ -74,9 +74,16 @@ function Navbar({ auth }) {
                 </Link>
                 <NavbarList>
                     <NavbarListItems>
-                        <NavLink href="/">Shop</NavLink>
+                        <NavLink href="/">Home</NavLink>
                     </NavbarListItems>
                     <NavbarListItems>
+                        <NavLink href="/mentors">Mentors</NavLink>
+                    </NavbarListItems>
+                    <NavbarListItems>
+                        <NavLink href="/courses">Courses</NavLink>
+                    </NavbarListItems>
+
+                    {/* <NavbarListItems>
                         <Dropdown title="For Kindergarten">
                             <NavLink>Hello world</NavLink>
                             <NavLink>Hello world</NavLink>
@@ -84,30 +91,7 @@ function Navbar({ auth }) {
                             <NavLink>Hello world</NavLink>
                         </Dropdown>
                     </NavbarListItems>
-                    <NavbarListItems>
-                        <Dropdown title="For Highschool">
-                            <NavLink>Hello world</NavLink>
-                            <NavLink>Hello world</NavLink>
-                            <NavLink>Hello world</NavLink>
-                            <NavLink>Hello world</NavLink>
-                        </Dropdown>
-                    </NavbarListItems>
-                    <NavbarListItems>
-                        <Dropdown title="For College">
-                            <NavLink>Hello world</NavLink>
-                            <NavLink>Hello world</NavLink>
-                            <NavLink>Hello world</NavLink>
-                            <NavLink>Hello world</NavLink>
-                        </Dropdown>
-                    </NavbarListItems>
-                    <NavbarListItems>
-                        <Dropdown title="For Courses">
-                            <NavLink>Hello world</NavLink>
-                            <NavLink>Hello world</NavLink>
-                            <NavLink>Hello world</NavLink>
-                            <NavLink>Hello world</NavLink>
-                        </Dropdown>
-                    </NavbarListItems>
+                     */}
                 </NavbarList>
                 <NavbarList>
                     <NavbarListItems>
@@ -127,7 +111,11 @@ function Navbar({ auth }) {
                                                 height: 35,
                                                 border: `2px solid ${theme.palette.secondary.light}`,
                                             })}
-                                            src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                                            src={
+                                                auth.student.image
+                                                    ? `http://127.0.0.1:8000/storage/${auth.student.image}`
+                                                    : ""
+                                            }
                                         ></Avatar>
                                     </IconButton>
                                 }
@@ -135,9 +123,7 @@ function Navbar({ auth }) {
                                 <AccountWrapper>
                                     <Box {...flexBox("center", "", "")}>
                                         <AccountAvatar
-                                            bgImage={
-                                                "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                                            }
+                                            bgImage={`http://127.0.0.1:8000/storage/${auth.student.image}`}
                                         />
                                         <Box padding={1}>
                                             <NavLink
@@ -177,6 +163,7 @@ function Navbar({ auth }) {
                                 </Divider>
                                 <MenuItem>
                                     <NavLink
+                                        href="/account"
                                         typographyProps={{
                                             variant: "h6",
                                             fontWeight: "bold",

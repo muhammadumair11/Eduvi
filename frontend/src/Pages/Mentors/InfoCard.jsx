@@ -7,14 +7,6 @@ import {
     secondarySubtitleProps,
 } from "../../HelperPropFunctions/typography";
 
-const Icons = {
-    options: {
-        width: "25",
-        color: "#0A033C",
-    },
-    icons: ["ri:facebook-fill", "mdi:instagram", "mdi:twitter", "mdi:linkedin"],
-};
-
 function ListItem({ title, children }) {
     return (
         <Stack {...stackBox("", "space-between")}>
@@ -31,7 +23,27 @@ function ListItem({ title, children }) {
     );
 }
 
-function InfoCard() {
+function InfoCard({ info }) {
+    const Icons = {
+        options: {
+            width: "25",
+            color: "#0A033C",
+        },
+        icons: [
+            {
+                icon: "ri:facebook-fill",
+                link: `https://www.facebook.com/${info.users.facebook}`,
+            },
+            {
+                icon: "mdi:linkedin",
+                link: `https://www.linkedin.com/in/${info.users.linkedin}`,
+            },
+            {
+                icon: "mdi:twitter",
+                link: `https://twitter.com/${info.users.twitter}`,
+            },
+        ],
+    };
     return (
         <Paper elevation={0}>
             <Stack padding={2} spacing={1}>
@@ -72,7 +84,9 @@ function InfoCard() {
                             fontWeight: "bold",
                         })}
                     >
-                        10 Years
+                        {info.experience
+                            ? `${info.experience} Years`
+                            : "No Experience"}
                     </Typography>
                 </ListItem>
                 <ListItem title="Graduated">
@@ -82,7 +96,7 @@ function InfoCard() {
                             fontWeight: "bold",
                         })}
                     >
-                        Yes
+                        {info.graduated}
                     </Typography>
                 </ListItem>
                 <ListItem title="Language">
@@ -92,18 +106,23 @@ function InfoCard() {
                             fontWeight: "bold",
                         })}
                     >
-                        English, French
+                        {info.languages}
                     </Typography>
                 </ListItem>
                 <ListItem title="Social">
                     <div>
-                        {Icons.icons.map((el, i) => (
-                            <CustomIcon
-                                key={i}
-                                icon={el}
-                                width={Icons.options.width}
-                            />
-                        ))}
+                        {Icons.icons.map((el, i) => {
+                            return !el.link.endsWith("null") ? (
+                                <a href={el.link} key={i} target="_blank">
+                                    <CustomIcon
+                                        icon={el.icon}
+                                        width={Icons.options.width}
+                                    />
+                                </a>
+                            ) : (
+                                ""
+                            );
+                        })}
                     </div>
                 </ListItem>
             </Stack>

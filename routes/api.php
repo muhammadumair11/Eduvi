@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthApiController;
+use App\Http\Controllers\API\DataController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,15 @@ Route::post('login', [AuthApiController::class,'login']);
 
 Route::middleware("auth:api")->group(function () {
     Route::get('refresh', [AuthApiController::class,'refresh']);
+
+    Route::get('mentors', [DataController::class,'mentors']);
+    Route::get('courses', [DataController::class,'courses']);
+    Route::get('courses/{id}', [DataController::class,'mentorsCourses']);
+
+    Route::get('categories', [DataController::class,'categories']);
+    Route::get('categories/{id}', [DataController::class,'subcategories']);
+
+    Route::post('update', [AuthApiController::class,'update']);
     Route::post('logout', [AuthApiController::class,'logout']);
 });
 

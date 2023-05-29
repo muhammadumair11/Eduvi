@@ -7,136 +7,135 @@ import {
     MenuItem,
     ListItemText,
 } from "@mui/material";
-import React, { Suspense } from "react";
-import PrimaryCard from "../../Components/PrimaryCard";
-import { flexBox } from "../../HelperPropFunctions/flexBox";
+import React, { Suspense, useState } from "react";
 
 import cardImage from "../../Assets/Images/subjects.png";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import NewsLetter from "../../Common/Newsletter/NewsLetter";
 import {
     MobileContainer,
     WebContainer,
 } from "../../Common/Wrapper/ResponsiveContainers";
 import CustomMenu from "../../Components/CustomMenu";
-import {
-    primarySubtitleProps,
-    primaryHeadingBoldProps,
-} from "../../HelperPropFunctions/typography";
+import { primarySubtitleProps } from "../../HelperPropFunctions/typography";
 import { ArrowDownward } from "@mui/icons-material";
 const FeaturedCourses = React.lazy(() =>
     import("../../Common/FeaturedCourses/FeaturedCourses")
 );
 import Loader from "../../Components/Loader";
 import PageHeader from "../../Common/PageHeader/PageHeader";
+import { useCategoriesQuery } from "../../Features/Categories/categoriesApiSlice";
+import SubCategoryCardList from "../../Common/SubCategoryCardList/SubCategoryCardList";
 
 function Courses() {
+    const [selected, setSelected] = useState(1);
+    const categories = useCategoriesQuery();
+
+    console.log(categories.data);
+
     return (
         <Container>
-            <Grid container>
-                {/* Primary Card */}
+            {!categories.isLoading ? (
+                <Grid container>
+                    {/* Primary Card */}
 
-                <Grid item xs={12}>
-                    <PageHeader
-                        titleText="All Courses"
-                        mobileTitle="All Courses"
-                        image={cardImage}
-                    />
-                </Grid>
+                    <Grid item xs={12}>
+                        <PageHeader
+                            titleText="All Courses"
+                            mobileTitle="All Courses"
+                            image={cardImage}
+                        />
+                    </Grid>
 
-                {/* Courses Buttons List */}
-                <Grid item xs={12} paddingY={2}>
-                    <WebContainer>
-                        <Stack direction="row" flexWrap="wrap" spacing={2}>
-                            {/* Going through an array of Button's list */}
-                            {coursesLinks.map((item, index) => (
-                                <Link key={index} to={item.link}>
+                    {/* Courses Buttons List */}
+                    <Grid item xs={12} paddingY={2}>
+                        <WebContainer>
+                            <Stack direction="row" flexWrap="wrap" spacing={2}>
+                                {/* Going through an array of Button's list */}
+                                {categories.data.map((item) => (
                                     <Button
+                                        key={item.id}
+                                        onClick={() => setSelected(item.id)}
                                         variant={
-                                            index == 3
+                                            item.id == selected
                                                 ? "contained"
                                                 : "outlined"
                                         }
                                         size="medium"
                                         color="secondary"
                                     >
-                                        {item.text}
+                                        {item.name_category}
                                     </Button>
-                                </Link>
-                            ))}
-                        </Stack>
-                    </WebContainer>
+                                ))}
+                            </Stack>
+                        </WebContainer>
 
-                    <MobileContainer>
-                        <CustomMenu
-                            id="courses-list"
-                            title={
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    endIcon={<ArrowDownward />}
-                                    fullWidth
-                                >
-                                    Choose List
-                                </Button>
-                            }
-                            position={{
-                                anchorOrigin: {
-                                    vertical: "bottom",
-                                    horizontal: "left",
-                                },
-                                transformOrigin: {
-                                    vertical: "top",
-                                    horizontal: "left",
-                                },
-                            }}
-                        >
-                            {coursesLinks.map((el, i) => (
-                                <MenuItem
-                                    key={i}
-                                    onClick={() =>
-                                        setFilter((prevState) => ({
-                                            ...prevState,
-                                            category: el,
-                                        }))
-                                    }
-                                    sx={{
-                                        minWidth: "200px",
-                                    }}
-                                >
-                                    <ListItemText>
-                                        <Link to={el.link}>
+                        <MobileContainer>
+                            <CustomMenu
+                                id="courses-list"
+                                title={
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        endIcon={<ArrowDownward />}
+                                        fullWidth
+                                    >
+                                        Choose List
+                                    </Button>
+                                }
+                                position={{
+                                    anchorOrigin: {
+                                        vertical: "bottom",
+                                        horizontal: "left",
+                                    },
+                                    transformOrigin: {
+                                        vertical: "top",
+                                        horizontal: "left",
+                                    },
+                                }}
+                            >
+                                {categories.data.map((item, i) => (
+                                    <MenuItem
+                                        key={i}
+                                        onClick={() => setSelected(item.id)}
+                                        sx={{
+                                            minWidth: "200px",
+                                        }}
+                                    >
+                                        <ListItemText>
                                             <Typography
                                                 {...primarySubtitleProps({
                                                     light: "true",
                                                     fontWeight: "bold",
                                                 })}
                                             >
-                                                {el.text}
+                                                {item.name_category}
                                             </Typography>
-                                        </Link>
-                                    </ListItemText>
-                                </MenuItem>
-                            ))}
-                        </CustomMenu>
-                    </MobileContainer>
-                </Grid>
+                                        </ListItemText>
+                                    </MenuItem>
+                                ))}
+                            </CustomMenu>
+                        </MobileContainer>
+                    </Grid>
 
-                {/* Courses List */}
-                <Grid item xs={12}>
-                    <Grid container spacing={2}>
-                        <Outlet />
+                    {/* Courses List */}
+                    <Grid item xs={12}>
+                        <Grid container spacing={2}>
+                            <SubCategoryCardList categoryId={selected} />
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12} marginY={2}>
+                        <Suspense fallback={<Loader />}>
+                            <FeaturedCourses />
+                        </Suspense>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <NewsLetter />
                     </Grid>
                 </Grid>
-                <Grid item xs={12} marginY={2}>
-                    <Suspense fallback={<Loader />}>
-                        <FeaturedCourses />
-                    </Suspense>
-                </Grid>
-                <Grid item xs={12}>
-                    <NewsLetter />
-                </Grid>
-            </Grid>
+            ) : (
+                <Loader />
+            )}
         </Container>
     );
 }

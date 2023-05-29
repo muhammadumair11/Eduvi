@@ -48,12 +48,9 @@ function NavbarMobile() {
     const [auth, setAuth] = useState(false);
 
     const props = useSpring({
-        x: open ? 0 : -300,
+        left: open ? "0%" : "-100%",
         opacity: open ? 1 : 0,
-
-        onChange: () => ({
-            zIndex: open ? 5 : -100,
-        }),
+        zIndex: open ? 5 : 1,
     });
 
     return (
