@@ -37,15 +37,17 @@ function SubCategoryCard({ title, link, description, logo }) {
                         />
                     </Typography>
 
-                    <Button
-                        sx={{
-                            borderRadius: "5px",
-                        }}
-                        variant="outlined"
-                        color="primary"
-                    >
-                        Class Details
-                    </Button>
+                    <Link to={link}>
+                        <Button
+                            sx={{
+                                borderRadius: "5px",
+                            }}
+                            variant="outlined"
+                            color="primary"
+                        >
+                            Class Details
+                        </Button>
+                    </Link>
                 </Box>
             </Link>
         </Paper>

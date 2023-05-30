@@ -129,7 +129,7 @@ class MentorController extends Controller
             }
             $path = Storage::putFile("mentors", $request->file("image"));
         } else {
-            $path = null;
+            $path = $mentor->image;
         }
 
         $mentor->image = $path;

@@ -16,11 +16,16 @@ function App() {
     const coursesData = useCoursesQuery();
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-
-        const user = userData.data?.user;
         const mentors = mentorData.data;
         const courses = coursesData.data;
+
+        dispatch(setMentors(mentors));
+        dispatch(setCourses(courses));
+    }, [mentorData.data, coursesData.data]);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        const user = userData.data?.user;
 
         if (token) {
             const tokenData = {
@@ -28,10 +33,8 @@ function App() {
                 token: token,
             };
             dispatch(setCredentials({ ...tokenData }));
-            dispatch(setMentors(mentors));
-            dispatch(setCourses(courses));
         }
-    }, [userData.data, mentorData.data, coursesData.data]);
+    }, [userData.data]);
 
     return <RouterProvider router={router} />;
 }

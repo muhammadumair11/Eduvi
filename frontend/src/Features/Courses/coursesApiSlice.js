@@ -3,21 +3,17 @@ import { apiSlice } from "../../Services/apiSlice";
 export const coursesApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         courses: builder.query({
-            query: () => ({
-                url: "/courses",
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "application/json",
-                },
-            }),
+            query: (parameters) => {
+                const searchObject = new URLSearchParams(parameters);
+
+                return {
+                    url: parameters ? `/courses?${searchObject}` : "/courses",
+                };
+            },
         }),
         mentorCourses: builder.query({
             query: (id) => ({
-                url: `/courses/${id}`,
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "application/json",
-                },
+                url: `/mentorCourses/${id}`,
             }),
         }),
     }),

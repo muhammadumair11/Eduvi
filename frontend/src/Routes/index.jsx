@@ -31,6 +31,8 @@ import CourseDashboard from "../Pages/CourseDashboard/CourseDashboard";
 import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
 import Account from "../Pages/Account/Account";
+import CourseCardList from "../Common/CourseCardList/CourseCardList";
+import SubCategoryCardList from "../Common/SubCategoryCardList/SubCategoryCardList";
 
 const router = createBrowserRouter([
     {
@@ -59,11 +61,21 @@ const router = createBrowserRouter([
             {
                 path: "/courses",
                 element: <Courses />,
+                children: [
+                    {
+                        path: "/courses",
+                        element: <SubCategoryCardList />,
+                    },
+                    {
+                        path: ":name",
+                        element: <CourseCardList />,
+                    },
+                ],
             },
-            {
-                path: "/courses/1",
-                element: <CourseDashboard />,
-            },
+            // {
+            //     path: "/courses/1",
+            //     element: <CourseDashboard />,
+            // },
 
             // Mentors
             {
@@ -86,7 +98,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/mentor/:id",
-                element: <PrivateRoutes element={<SingleMentor />} />,
+                element: <SingleMentor />,
             },
 
             // Store

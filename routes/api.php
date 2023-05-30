@@ -18,15 +18,17 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', [AuthApiController::class,'register']);
 Route::post('login', [AuthApiController::class,'login']);
 
+Route::get('categories', [DataController::class,'categories']);
+Route::get('categories/{id}', [DataController::class,'subcategories']);
+Route::get('mentors', [DataController::class,'mentors']);
+Route::get('courses', [DataController::class,'courses']);
+Route::get('mentorCourses/{id}', [DataController::class,'mentorsCourses']);
+
+
 Route::middleware("auth:api")->group(function () {
     Route::get('refresh', [AuthApiController::class,'refresh']);
 
-    Route::get('mentors', [DataController::class,'mentors']);
-    Route::get('courses', [DataController::class,'courses']);
-    Route::get('courses/{id}', [DataController::class,'mentorsCourses']);
 
-    Route::get('categories', [DataController::class,'categories']);
-    Route::get('categories/{id}', [DataController::class,'subcategories']);
 
     Route::post('update', [AuthApiController::class,'update']);
     Route::post('logout', [AuthApiController::class,'logout']);
