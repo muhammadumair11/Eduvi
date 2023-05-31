@@ -19,6 +19,7 @@ import {
     primarySubtitleProps,
     secondaryHeadingBoldProps,
 } from "../../../HelperPropFunctions/typography";
+import { ASSET_URL } from "../../../Services/apiSlice";
 
 const BackgroundImage = styled("div")(({ theme }) => ({
     height: "200px",
@@ -38,7 +39,7 @@ function CourseCard({ courseData }) {
                 {courseData.image ? (
                     <BackgroundImage
                         style={{
-                            backgroundImage: `url(http://127.0.0.1:8000/storage/${courseData.image})`,
+                            backgroundImage: `url(${ASSET_URL}${courseData.image})`,
                         }}
                     />
                 ) : (

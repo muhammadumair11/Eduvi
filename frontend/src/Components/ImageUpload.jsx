@@ -1,6 +1,7 @@
 import { styled, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { ASSET_URL } from "../Services/apiSlice";
 
 const CustomImage = styled("img")(({ theme }) => ({
     width: "100%",
@@ -28,7 +29,7 @@ function ImageUpload({ value, onChange }) {
         if (file != null && typeof file != "string") {
             return URL.createObjectURL(file);
         } else if (typeof file == "string") {
-            return `http://127.0.0.1:8000/storage/${file}`;
+            return `${ASSET_URL}${file}`;
         } else {
             return file;
         }

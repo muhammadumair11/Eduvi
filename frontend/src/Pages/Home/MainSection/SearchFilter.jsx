@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { primarySubtitleProps } from "../../../HelperPropFunctions/typography";
+import { useAllSubCategoriesQuery } from "../../../Features/Categories/categoriesApiSlice";
+import Loader from "../../../Components/Loader";
 
 function SearchFilter() {
     const [filter, setFilter] = useState({
@@ -20,7 +22,9 @@ function SearchFilter() {
         course: "",
     });
 
-    return (
+    const { data, isLoading } = useAllSubCategoriesQuery();
+
+    return !isLoading ? (
         <Paper variant="outlined">
             <Stack {...flexBox("space-between", "center", "")} spacing={1}>
                 <CustomMenu
@@ -43,18 +47,18 @@ function SearchFilter() {
                             endIcon={<ExpandMoreTwoTone />}
                         >
                             <Typography variant="subtitle2">
-                                {filter.category || "KinderGarten"}
+                                {filter.category || data[0].name_sub_category}
                             </Typography>
                         </Button>
                     }
                 >
-                    {["KinderGarten", "School", "College"].map((el, i) => (
+                    {data.map((el, i) => (
                         <MenuItem
-                            key={i}
+                            key={el.id}
                             onClick={() =>
                                 setFilter((prevState) => ({
                                     ...prevState,
-                                    category: el,
+                                    category: el.name_sub_category,
                                 }))
                             }
                             sx={{
@@ -68,7 +72,7 @@ function SearchFilter() {
                                         fontWeight: "bold",
                                     })}
                                 >
-                                    {el}
+                                    {el.name_sub_category}
                                 </Typography>
                             </ListItemText>
                         </MenuItem>
@@ -106,6 +110,8 @@ function SearchFilter() {
                 />
             </Stack>
         </Paper>
+    ) : (
+        <Loader />
     );
 }
 

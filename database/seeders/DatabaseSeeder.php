@@ -73,7 +73,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $user->id,
         ]);
 
-        Course::factory(3)->create([
+        Course::factory(20)->create([
             "mentor_id" => $mentor->id
         ]);
 

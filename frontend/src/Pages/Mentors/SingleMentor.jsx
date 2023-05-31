@@ -27,6 +27,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { selectMentors } from "../../Features/Mentors/mentorSlice";
 import Loader from "../../Components/Loader";
 import CoursesTab from "./SingleMentorTabContent/CoursesTab";
+import { ASSET_URL } from "../../Services/apiSlice";
 
 const SingleMentorImage = styled("img")(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
@@ -84,7 +85,7 @@ function SingleMentor() {
                         >
                             {mentor.image ? (
                                 <SingleMentorImage
-                                    src={`http://127.0.0.1:8000/storage/${mentor.image}`}
+                                    src={`${ASSET_URL}${mentor.image}`}
                                 />
                             ) : (
                                 <Skeleton width="100%" height={100} />

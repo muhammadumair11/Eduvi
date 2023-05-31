@@ -138,9 +138,7 @@ function Courses() {
 
                     {/* Courses List */}
                     <Grid item xs={12}>
-                        <Grid container spacing={2}>
-                            <Outlet />
-                        </Grid>
+                        <Outlet />
                     </Grid>
                     <Grid item xs={12} marginY={2}>
                         <Suspense fallback={<Loader />}>

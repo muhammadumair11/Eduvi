@@ -43,6 +43,7 @@ import { useLogout } from "../../Features/auth/authApiSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut, selectCurrentToken } from "../../Features/auth/authSlice";
 import CustomAlert from "../CustomAlert";
+import { ASSET_URL } from "../../Services/apiSlice";
 
 function Navbar({ auth }) {
     const [logout, { isSuccess }] = useLogout();
@@ -95,7 +96,7 @@ function Navbar({ auth }) {
                 </NavbarList>
                 <NavbarList>
                     <NavbarListItems>
-                        <NavLink>Cart(0)</NavLink>
+                        <NavLink href={"/cart"}>Cart(0)</NavLink>
                         <IconWrapper size="20" marginx="5">
                             <img src={cart} alt="" />
                         </IconWrapper>
@@ -113,7 +114,7 @@ function Navbar({ auth }) {
                                             })}
                                             src={
                                                 auth.student.image
-                                                    ? `http://127.0.0.1:8000/storage/${auth.student.image}`
+                                                    ? `${ASSET_URL}${auth.student.image}`
                                                     : ""
                                             }
                                         ></Avatar>
@@ -123,7 +124,7 @@ function Navbar({ auth }) {
                                 <AccountWrapper>
                                     <Box {...flexBox("center", "", "")}>
                                         <AccountAvatar
-                                            bgImage={`http://127.0.0.1:8000/storage/${auth.student.image}`}
+                                            bgImage={`${ASSET_URL}${auth.student.image}`}
                                         />
                                         <Box padding={1}>
                                             <NavLink
@@ -149,6 +150,7 @@ function Navbar({ auth }) {
 
                                 <MenuItem>
                                     <NavLink
+                                        href="/cart"
                                         typographyProps={{
                                             variant: "h6",
                                             fontWeight: "bold",

@@ -2,10 +2,12 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { logOut, setCredentials } from "../Features/auth/authSlice";
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:8000/api/";
+// const API_URL = "http://127.0.0.1:8000/api/";
+export const APP_URL = "http://0.0.0.0/api/";
+export const ASSET_URL = "http://0.0.0.0/storage/";
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: API_URL,
+    baseUrl: APP_URL,
     // credentials: "include",
     prepareHeaders: (headers, { getState }) => {
         const token = getState().auth.token;

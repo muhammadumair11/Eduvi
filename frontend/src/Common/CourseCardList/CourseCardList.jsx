@@ -8,16 +8,17 @@ import { useCoursesQuery } from "../../Features/Courses/coursesApiSlice";
 import { useParams } from "react-router-dom";
 
 function CourseCardList() {
-    const { name } = useParams();
-    const { data, isSuccess } = useCoursesQuery({ sub_category: name });
+    const { id } = useParams();
+    const { data, isSuccess } = useCoursesQuery(id ? { sub_category: id } : {});
 
-    console.log(data);
     return isSuccess ? (
-        data.map((item, index) => (
-            <Grid key={index} item lg={3} md={3} sm={6} xs={12}>
-                <CourseCard courseData={item} />
-            </Grid>
-        ))
+        <Grid container spacing={2}>
+            {data.map((item, index) => (
+                <Grid key={index} item lg={3} md={3} sm={6} xs={12}>
+                    <CourseCard courseData={item} />
+                </Grid>
+            ))}
+        </Grid>
     ) : (
         <Loader />
     );

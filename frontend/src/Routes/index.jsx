@@ -33,6 +33,7 @@ import PublicRoutes from "./PublicRoutes";
 import Account from "../Pages/Account/Account";
 import CourseCardList from "../Common/CourseCardList/CourseCardList";
 import SubCategoryCardList from "../Common/SubCategoryCardList/SubCategoryCardList";
+import Cart from "../Pages/Cart/Cart";
 
 const router = createBrowserRouter([
     {
@@ -47,14 +48,8 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: "/",
-                        element: (
-                            <Suspense fallback={<Loader />}>
-                                <HighSchool />
-                            </Suspense>
-                        ),
+                        element: <CourseCardList />,
                     },
-                    { path: "/college", element: <College /> },
-                    { path: "/kindergarten", element: <KinderGarten /> },
                 ],
             },
             // Courses
@@ -67,7 +62,7 @@ const router = createBrowserRouter([
                         element: <SubCategoryCardList />,
                     },
                     {
-                        path: ":name",
+                        path: ":name/:id",
                         element: <CourseCardList />,
                     },
                 ],
@@ -91,6 +86,10 @@ const router = createBrowserRouter([
                         ),
                     },
                 ],
+            },
+            {
+                path: "/cart",
+                element: <PrivateRoutes element={<Cart />} />,
             },
             {
                 path: "/joinasmentor",

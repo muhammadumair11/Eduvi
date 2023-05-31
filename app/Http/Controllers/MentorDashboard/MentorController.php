@@ -97,7 +97,6 @@ class MentorController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $user = User::find($id);
         $mentor = Mentor::where("user_id", $id)->first();
         $socials = Social::where("user_id", $id)->first();

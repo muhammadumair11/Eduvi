@@ -10,6 +10,7 @@ import LoadingButton from "@mui/lab/LoadingButton/LoadingButton";
 import { useFormik } from "formik";
 import CustomAlert from "../../Components/CustomAlert";
 import axios from "axios";
+import { APP_URL } from "../../Services/apiSlice";
 
 function Account() {
     const data = useSelector(selectCurrentUser);
@@ -34,18 +35,12 @@ function Account() {
 
             // const data = await update(formData);
 
-            const { data } = await axios.post(
-                "http://127.0.0.1:8000/api/update",
-                formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            );
+            const { data } = await axios.post(`${APP_URL}update`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            });
             setSuccess(true);
         },
     });

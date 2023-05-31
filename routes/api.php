@@ -19,6 +19,7 @@ Route::post('register', [AuthApiController::class,'register']);
 Route::post('login', [AuthApiController::class,'login']);
 
 Route::get('categories', [DataController::class,'categories']);
+Route::get('subcategories', [DataController::class,'allsubcategories']);
 Route::get('categories/{id}', [DataController::class,'subcategories']);
 Route::get('mentors', [DataController::class,'mentors']);
 Route::get('courses', [DataController::class,'courses']);

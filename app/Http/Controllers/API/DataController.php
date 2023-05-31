@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\Mentor;
 use App\Models\SubCategory;
+use Illuminate\Http\Request;
 
 class DataController extends Controller
 {
@@ -19,16 +20,30 @@ class DataController extends Controller
         return response()->json($mentors);
     }
 
-    public function courses()
+    public function courses(Request $request)
     {
-        return response()->json(
-            Course::all()
-        );
+
+        if($request->all()) {
+            return response()->json(
+                // $request->sub_category
+                Course::where("sub_category_id", $request->sub_category)->get()
+            );
+        } else {
+            return response()->json(
+                Course::all()
+            );
+        }
     }
     public function categories()
     {
         return response()->json(
             Category::all()
+        );
+    }
+    public function allsubcategories()
+    {
+        return response()->json(
+            SubCategory::all()
         );
     }
     public function subcategories($id)

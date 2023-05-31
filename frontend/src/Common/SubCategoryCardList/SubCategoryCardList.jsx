@@ -17,7 +17,7 @@ function SubCategoryCardList() {
                 <Grid key={item.id} item lg={3}>
                     <SubCategoryCard
                         // logo={el.logo}
-                        link={`/courses/${item.name_sub_category}`}
+                        link={`/courses/${item.name_sub_category}/${item.id}`}
                         title={item.name_sub_category}
                         description={item.name_sub_category}
                     />

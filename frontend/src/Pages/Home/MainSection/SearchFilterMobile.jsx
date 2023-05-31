@@ -7,12 +7,19 @@ import {
     Stack,
     ListItemText,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import CustomMenu from "../../../Components/CustomMenu";
 import { flexBox } from "../../../HelperPropFunctions/flexBox";
 import { primarySubtitleProps } from "../../../HelperPropFunctions/typography";
+import { useAllSubCategoriesQuery } from "../../../Features/Categories/categoriesApiSlice";
 
 function SearchFilterMobile() {
+    const [filter, setFilter] = useState({
+        category: "",
+        course: "",
+    });
+
+    const { data, isLoading } = useAllSubCategoriesQuery();
     return (
         <Stack padding={0} spacing={1}>
             <CustomMenu
@@ -38,18 +45,18 @@ function SearchFilterMobile() {
                         endIcon={<ExpandMoreTwoTone />}
                     >
                         <Typography variant="subtitle2">
-                            KinderGarten
+                            {filter.category || data[0].name_sub_category}
                         </Typography>
                     </Button>
                 }
             >
-                {["KinderGarten", "School", "College"].map((el, i) => (
+                {data.map((el, i) => (
                     <MenuItem
-                        key={i}
+                        key={el.id}
                         onClick={() =>
                             setFilter((prevState) => ({
                                 ...prevState,
-                                category: el,
+                                category: el.name_sub_category,
                             }))
                         }
                         sx={{
@@ -63,7 +70,7 @@ function SearchFilterMobile() {
                                     fontWeight: "bold",
                                 })}
                             >
-                                {el}
+                                {el.name_sub_category}
                             </Typography>
                         </ListItemText>
                     </MenuItem>
@@ -73,6 +80,13 @@ function SearchFilterMobile() {
                 variant="outlined"
                 size="small"
                 placeholder="Class/Course"
+                value={filter.course}
+                onChange={(e) =>
+                    setFilter((prevState) => ({
+                        ...prevState,
+                        course: e.target.value,
+                    }))
+                }
                 fullWidth
                 color="secondary"
             />
