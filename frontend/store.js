@@ -6,6 +6,7 @@ import { mentorsApiSlice } from "./src/Features/Mentors/mentorsApiSlice";
 import coursesSlice from "./src/Features/Courses/coursesSlice";
 import { coursesApiSlice } from "./src/Features/Courses/coursesApiSlice";
 import { categoriesApiSlice } from "./src/Features/Categories/categoriesApiSlice";
+import categoriesSlice from "./src/Features/Categories/categoriesSlice";
 
 export const store = configureStore({
     reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
         auth: authSlice,
         mentors: mentorSlice,
         courses: coursesSlice,
+        categories: categoriesSlice,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()

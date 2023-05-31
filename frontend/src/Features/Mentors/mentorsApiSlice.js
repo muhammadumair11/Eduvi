@@ -5,10 +5,6 @@ export const mentorsApiSlice = apiSlice.injectEndpoints({
         mentors: builder.query({
             query: () => ({
                 url: "/mentors",
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "application/json",
-                },
             }),
         }),
     }),

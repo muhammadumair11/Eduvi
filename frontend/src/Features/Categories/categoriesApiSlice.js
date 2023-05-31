@@ -5,19 +5,11 @@ export const categoriesApiSlice = apiSlice.injectEndpoints({
         categories: builder.query({
             query: () => ({
                 url: "/categories",
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "application/json",
-                },
             }),
         }),
         subcategories: builder.query({
             query: (id) => ({
-                url: `/categories/${id}`,
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "application/json",
-                },
+                url: id ? `/categories/${id}` : `/categories/1`,
             }),
         }),
     }),

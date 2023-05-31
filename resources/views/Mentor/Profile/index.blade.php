@@ -31,11 +31,11 @@
                                                 <div class="col-lg-4">
                                                         <div class="row">
                                                             <div class="col-lg-12">
-                                                                @if ($user->mentors->image)
-                                                                <input type="file" name="image" class="dropify" data-height="200" data-default-file="{{asset("storage/".$user->mentors->image)}}"  />
-                                                                @else
-                                                                <input type="file" name="image" class="dropify" data-height="200" />
-                                                                @endif
+                                                                    @if ($user->mentors->image)
+                                                                    <input type="file" name="image" class="dropify" data-height="200" data-default-file="{{asset("storage/".$user->mentors->image)}}"  />
+                                                                    @else
+                                                                    <input type="file" name="image" class="dropify" data-height="200" />
+                                                                    @endif
                                                                 @error("image")
                                                                     <div class="text-danger mt-3">
                                                                         {{$message}}
