@@ -42,6 +42,7 @@ export default function CustomMenu({ id, title, children, position, tooltip }) {
                 PaperProps={{
                     elevation: 1,
                     sx: {
+                        minWidth: "300px",
                         overflow: "visible",
                         filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
                         mt: 1.5,

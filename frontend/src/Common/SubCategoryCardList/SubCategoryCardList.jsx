@@ -12,18 +12,20 @@ function SubCategoryCardList() {
     const { data, isLoading } = useSubcategoriesQuery(id);
 
     return !isLoading ? (
-        data.map((item) => {
-            return (
-                <Grid key={item.id} item lg={3}>
-                    <SubCategoryCard
-                        // logo={el.logo}
-                        link={`/courses/${item.name_sub_category}/${item.id}`}
-                        title={item.name_sub_category}
-                        description={item.name_sub_category}
-                    />
-                </Grid>
-            );
-        })
+        <Grid container spacing={2}>
+            {data.map((item) => {
+                return (
+                    <Grid key={item.id} item lg={3}>
+                        <SubCategoryCard
+                            // logo={el.logo}
+                            link={`/courses/${item.name_sub_category}/${item.id}`}
+                            title={item.name_sub_category}
+                            description={item.name_sub_category}
+                        />
+                    </Grid>
+                );
+            })}
+        </Grid>
     ) : (
         <Loader />
     );

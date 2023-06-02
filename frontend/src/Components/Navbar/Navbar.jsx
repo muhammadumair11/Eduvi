@@ -31,6 +31,7 @@ import {
 import CustomMenu from "../CustomMenu";
 import {
     AccountCircleTwoTone,
+    CategoryTwoTone,
     LogoutTwoTone,
     PersonAddTwoTone,
     ShoppingCartTwoTone,
@@ -38,22 +39,30 @@ import {
 import { IconWrapper } from "../../Common/Wrapper/IconWrapper";
 import { flexBox } from "../../HelperPropFunctions/flexBox";
 import { primarySubtitleProps } from "../../HelperPropFunctions/typography";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLogout } from "../../Features/auth/authApiSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut, selectCurrentToken } from "../../Features/auth/authSlice";
 import CustomAlert from "../CustomAlert";
 import { ASSET_URL } from "../../Services/apiSlice";
+import {
+    clearCourseCart,
+    selectCart,
+} from "../../Features/CourseCart/courseCartSlice";
 
 function Navbar({ auth }) {
     const [logout, { isSuccess }] = useLogout();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const token = useSelector(selectCurrentToken);
+    const cartItems = useSelector(selectCart);
 
     const handleLogout = async () => {
         const { data } = await logout();
         if (data.logout) {
             dispatch(logOut());
+            dispatch(clearCourseCart());
+            navigate("/login");
         }
     };
 
@@ -96,7 +105,9 @@ function Navbar({ auth }) {
                 </NavbarList>
                 <NavbarList>
                     <NavbarListItems>
-                        <NavLink href={"/cart"}>Cart(0)</NavLink>
+                        <NavLink href={"/cart"}>
+                            Cart({cartItems ? cartItems.length : 0})
+                        </NavLink>
                         <IconWrapper size="20" marginx="5">
                             <img src={cart} alt="" />
                         </IconWrapper>
@@ -158,6 +169,18 @@ function Navbar({ auth }) {
                                         icon={<ShoppingCartTwoTone />}
                                     >
                                         Cart
+                                    </NavLink>
+                                </MenuItem>
+                                <MenuItem>
+                                    <NavLink
+                                        href="/purchasedcourses"
+                                        typographyProps={{
+                                            variant: "h6",
+                                            fontWeight: "bold",
+                                        }}
+                                        icon={<CategoryTwoTone />}
+                                    >
+                                        Your Courses
                                     </NavLink>
                                 </MenuItem>
                                 <Divider textAlign="left">

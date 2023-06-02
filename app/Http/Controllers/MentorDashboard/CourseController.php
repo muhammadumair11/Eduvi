@@ -122,10 +122,12 @@ class CourseController extends Controller
         $course = Course::find($id);
 
         if(request()->file("thumbnail") != null) {
-            Storage::delete($course->thumbnail);
+            if($course->thumbnail != null) {
+                Storage::delete($course->thumbnail);
+            }
             $path = Storage::putFile("thumbnails", $request->file("thumbnail"));
         } else {
-            $path = null;
+            $path = $course->thumbnail;
         }
 
 

@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('purchased_courses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("course_id");
+            $table->foreignId("student_id");
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('purchased_courses');
     }
 };

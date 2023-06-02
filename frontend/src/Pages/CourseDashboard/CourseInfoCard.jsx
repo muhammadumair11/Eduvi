@@ -32,7 +32,7 @@ function ListItem({ title, children }) {
     );
 }
 
-function CourseInfoCard() {
+function CourseInfoCard({ courseInfo }) {
     return (
         <Paper elevation={0}>
             <Stack padding={2} spacing={1}>
@@ -82,10 +82,10 @@ function CourseInfoCard() {
                             fontWeight: "bold",
                         })}
                     >
-                        30
+                        {courseInfo.data.length}
                     </Typography>
                 </ListItem>
-                <ListItem title="Quizzes">
+                {/* <ListItem title="Quizzes">
                     <Typography
                         {...primarySubtitleProps({
                             light: "true",
@@ -114,7 +114,7 @@ function CourseInfoCard() {
                     >
                         French, English
                     </Typography>
-                </ListItem>
+                </ListItem> */}
                 <ListItem title="Access">
                     <Typography
                         {...primarySubtitleProps({
@@ -126,7 +126,7 @@ function CourseInfoCard() {
                     </Typography>
                 </ListItem>
                 <Button variant="contained" fullWidth color="primary">
-                    Purchase Course
+                    Purchase More Course
                 </Button>
             </Stack>
         </Paper>

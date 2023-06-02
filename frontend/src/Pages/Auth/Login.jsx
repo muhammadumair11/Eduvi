@@ -35,7 +35,6 @@ function Login() {
         e.preventDefault();
         const userData = await login(loginDetails).unwrap();
         dispatch(setCredentials({ ...userData }));
-        navigate("/");
     };
 
     return (
@@ -163,7 +162,7 @@ function Login() {
             {isError && (
                 <CustomAlert
                     message={
-                        "Sign in Failed, Please Check your email and passport"
+                        "Sign in Failed, Please Check your email and password"
                     }
                     severity="error"
                 />

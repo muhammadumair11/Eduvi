@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import { Grid, Typography, useMediaQuery } from "@mui/material";
 import SliderThumbnail from "./SliderThumbnail";
+import theme from "../../Theme/theme";
+import Loader from "../../Components/Loader";
 import {
     ImageWrapper,
     PaperCustom,
@@ -10,7 +12,18 @@ import {
 function Item(props) {
     return (
         <PaperCustom variant="outlined">
-            <ImageWrapper size="contain" backgroundImage={props.src} />
+            <iframe
+                style={{
+                    borderRadius: theme.shape.borderRadius,
+                }}
+                width="100%"
+                height="100%"
+                src={props.src}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+            ></iframe>
         </PaperCustom>
     );
 }
@@ -49,8 +62,8 @@ export default function Slider(props) {
                         },
                     }}
                 >
-                    {items.map((item, i) => (
-                        <Item key={i} src={item.src} />
+                    {props.courseData.data.map((item, i) => (
+                        <Item key={i} src={item.data} />
                     ))}
                 </Carousel>
                 <Typography
@@ -64,7 +77,7 @@ export default function Slider(props) {
             </Grid>
             <Grid item md={4} xs={12}>
                 <SliderThumbnail
-                    items={items}
+                    items={props.courseData}
                     activeRef={activeRefElement}
                     disabledRef={disabledRefElement}
                     activeSlide={activeSlide}

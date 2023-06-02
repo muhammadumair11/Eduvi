@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 import { useSelector } from "react-redux";
 import Loader from "../../Components/Loader";
@@ -12,13 +12,28 @@ function CourseCardList() {
     const { data, isSuccess } = useCoursesQuery(id ? { sub_category: id } : {});
 
     return isSuccess ? (
-        <Grid container spacing={2}>
-            {data.map((item, index) => (
-                <Grid key={index} item lg={3} md={3} sm={6} xs={12}>
-                    <CourseCard courseData={item} />
-                </Grid>
-            ))}
-        </Grid>
+        <>
+            <Grid container spacing={data.length != 0 ? 2 : 0}>
+                {data.length != 0 ? (
+                    data.map((item, index) => (
+                        <Grid key={index} item lg={3} md={3} sm={6} xs={12}>
+                            <CourseCard courseData={item} />
+                        </Grid>
+                    ))
+                ) : (
+                    <Grid lg={12}>
+                        <Typography
+                            variant="h1"
+                            marginY={3}
+                            fontWeight={"bold"}
+                            color="initial"
+                        >
+                            No Courses
+                        </Typography>
+                    </Grid>
+                )}
+            </Grid>
+        </>
     ) : (
         <Loader />
     );

@@ -47,7 +47,9 @@ function SearchFilter() {
                             endIcon={<ExpandMoreTwoTone />}
                         >
                             <Typography variant="subtitle2">
-                                {filter.category || data[0].name_sub_category}
+                                {data
+                                    ? data[0]?.name_sub_category
+                                    : filter.category}
                             </Typography>
                         </Button>
                     }

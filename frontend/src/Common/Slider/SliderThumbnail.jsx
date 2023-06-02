@@ -15,7 +15,7 @@ function SliderThumbnail({
 }) {
     return (
         <ScrollWrapper height="400px">
-            {items.map((item, i) => (
+            {items.data.map((item, i) => (
                 <Paper
                     variant={activeSlide == i ? "elevation" : "outlined"}
                     elevation={activeSlide == i ? 24 : 0}
@@ -35,8 +35,8 @@ function SliderThumbnail({
                         <TumbnailImage>
                             <ImageWrapper
                                 size="cover"
-                                backgroundImage={item.src}
-                                backgroundColor={true}
+                                backgroundImage={items.thumbnail}
+                                backgroundColor={false}
                             />
                         </TumbnailImage>
                         <Box padding=".5rem">
@@ -45,7 +45,7 @@ function SliderThumbnail({
                                 fontWeight="bold"
                                 color="primary.light"
                             >
-                                {"Slide 1 jfkldasjf kldsaj".slice(0, 30)}
+                                {"fjkdlasj".slice(0, 30)}
                             </Typography>
                             <Typography
                                 variant="subtitle2"

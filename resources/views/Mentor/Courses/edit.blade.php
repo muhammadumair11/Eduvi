@@ -31,7 +31,11 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-4">
+                                        @if ($course->thumbnail)
                                         <input type="file" name="thumbnail" class="dropify" data-height="200" data-default-file="{{asset("storage/".$course->thumbnail)}}" />
+                                        @else
+                                        <input type="file" name="thumbnail" class="dropify" data-height="200"  />
+                                        @endif
                                         @error("thumbnail")
                                             <div class="text-danger mt-3">
                                                 {{$message}}

@@ -34,6 +34,7 @@ import Account from "../Pages/Account/Account";
 import CourseCardList from "../Common/CourseCardList/CourseCardList";
 import SubCategoryCardList from "../Common/SubCategoryCardList/SubCategoryCardList";
 import Cart from "../Pages/Cart/Cart";
+import PurchasedCourses from "../Pages/PurchasedCourses/PurchasedCourses";
 
 const router = createBrowserRouter([
     {
@@ -67,10 +68,10 @@ const router = createBrowserRouter([
                     },
                 ],
             },
-            // {
-            //     path: "/courses/1",
-            //     element: <CourseDashboard />,
-            // },
+            {
+                path: "/courses/:id",
+                element: <PrivateRoutes element={<CourseDashboard />} />,
+            },
 
             // Mentors
             {
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
             {
                 path: "/cart",
                 element: <PrivateRoutes element={<Cart />} />,
+            },
+            {
+                path: "/purchasedcourses",
+                element: <PrivateRoutes element={<PurchasedCourses />} />,
             },
             {
                 path: "/joinasmentor",

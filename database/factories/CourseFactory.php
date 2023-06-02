@@ -20,7 +20,6 @@ class CourseFactory extends Factory
         return [
             'name' => fake()->text("20"),
             'description' => fake()->sentence("20"),
-            'thumbnail' => fake()->image(),
             'price' => fake()->randomElement(["100", "300", "165"]),
             "sub_category_id" => fake()->randomElement(SubCategory::pluck("id")->toArray()),
         ];

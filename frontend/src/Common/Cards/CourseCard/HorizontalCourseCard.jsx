@@ -7,6 +7,7 @@ import {
     styled,
     Typography,
     IconButton,
+    Skeleton,
 } from "@mui/material";
 import React from "react";
 import ClampLines from "react-clamp-lines";
@@ -30,11 +31,19 @@ const BackgroundImage = styled("div")(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
 }));
 
-function HorizontalCourseCard() {
+function HorizontalCourseCard({ courseData }) {
     return (
         <Paper variant="outlined">
             <Stack direction="row" padding={1}>
-                <BackgroundImage style={{ backgroundImage: `url(${image})` }} />
+                {courseData.image ? (
+                    <BackgroundImage
+                        style={{
+                            backgroundImage: `url(${ASSET_URL}${courseData.image})`,
+                        }}
+                    />
+                ) : (
+                    <Skeleton width="100%" height={100} />
+                )}
                 <Box padding={2} width="100%">
                     <Box marginBottom={2}>
                         <Typography
@@ -42,11 +51,11 @@ function HorizontalCourseCard() {
                                 variant: "body1",
                             })}
                         >
-                            New Course Html
+                            {courseData.name}
                         </Typography>
                         <Typography {...primarySubtitleProps({})}>
                             <ClampLines
-                                text="new course with fwe things fjdkasl fjd kasjfkd ajsk lfdja aksljf dklaasj fkldsja kld jfkdlaj kflsj klas j"
+                                text={courseData.description}
                                 lines={1}
                                 buttons={false}
                                 ellipsis="  ......"
@@ -62,7 +71,7 @@ function HorizontalCourseCard() {
                                 fontWeight: "bold",
                             })}
                         >
-                            $ 40.00
+                            $ {courseData.price}
                         </Typography>
                         <IconButton color="secondary">
                             <ShoppingBagTwoTone />

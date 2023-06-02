@@ -20,6 +20,17 @@ class Course extends Model
         "sub_category_id",
     ];
 
+
+    /**
+     * Get the mentor associated with the Course
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function mentor(): HasOne
+    {
+        return $this->hasOne(Mentor::class, "id");
+    }
+
     /**
      * Get all of the subCategory for the Course
      *
@@ -38,5 +49,24 @@ class Course extends Model
     public function data(): HasMany
     {
         return $this->hasMany(CourseContent::class, 'course_id');
+    }
+
+    /**
+     * Get all of the course_cart for the Course
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function course_cart(): HasMany
+    {
+        return $this->hasMany(CourseCart::class, 'course_id');
+    }
+    /**
+     * Get all of the course_cart for the Course
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function purchased_courses(): HasMany
+    {
+        return $this->hasMany(PurchasedCourses::class, 'course_id');
     }
 }

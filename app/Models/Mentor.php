@@ -40,4 +40,14 @@ class Mentor extends Model
     {
         return $this->hasMany(MentorRating::class, 'mentor_id');
     }
+
+    /**
+     * Get all of the courses for the Mentor
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function courses(): HasMany
+    {
+        return $this->hasMany(Course::class, "mentor_id");
+    }
 }

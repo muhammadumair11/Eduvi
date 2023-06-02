@@ -12,6 +12,7 @@ import CustomMenu from "../../../Components/CustomMenu";
 import { flexBox } from "../../../HelperPropFunctions/flexBox";
 import { primarySubtitleProps } from "../../../HelperPropFunctions/typography";
 import { useAllSubCategoriesQuery } from "../../../Features/Categories/categoriesApiSlice";
+import Loader from "../../../Components/Loader";
 
 function SearchFilterMobile() {
     const [filter, setFilter] = useState({
@@ -20,7 +21,7 @@ function SearchFilterMobile() {
     });
 
     const { data, isLoading } = useAllSubCategoriesQuery();
-    return (
+    return !isLoading ? (
         <Stack padding={0} spacing={1}>
             <CustomMenu
                 id="search-filter-mobile"
@@ -45,7 +46,9 @@ function SearchFilterMobile() {
                         endIcon={<ExpandMoreTwoTone />}
                     >
                         <Typography variant="subtitle2">
-                            {filter.category || data[0].name_sub_category}
+                            {data
+                                ? data[0]?.name_sub_category
+                                : filter.category}
                         </Typography>
                     </Button>
                 }
@@ -99,6 +102,8 @@ function SearchFilterMobile() {
                 <SearchTwoTone /> Search
             </Button>
         </Stack>
+    ) : (
+        <Loader />
     );
 }
 

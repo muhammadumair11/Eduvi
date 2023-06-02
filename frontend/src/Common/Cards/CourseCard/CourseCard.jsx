@@ -20,6 +20,10 @@ import {
     secondaryHeadingBoldProps,
 } from "../../../HelperPropFunctions/typography";
 import { ASSET_URL } from "../../../Services/apiSlice";
+import { useAddCourseCartItemsMutation } from "../../../Features/CourseCart/courseCartApiSlice";
+import { useDispatch } from "react-redux";
+import { setCourseCart } from "../../../Features/CourseCart/courseCartSlice";
+import CustomAlert from "../../../Components/CustomAlert";
 
 const BackgroundImage = styled("div")(({ theme }) => ({
     height: "200px",
@@ -33,17 +37,31 @@ const BackgroundImage = styled("div")(({ theme }) => ({
 }));
 
 function CourseCard({ courseData }) {
+    const dispatch = useDispatch();
+
+    const [addItem, cartData] = useAddCourseCartItemsMutation();
+
+    async function handleCartItem(id) {
+        const data = await addItem(id).unwrap();
+        dispatch(setCourseCart(data));
+    }
+
+    console.log(courseData);
+
     return (
         <Paper variant="outlined">
             <Stack direction="column" padding={1}>
-                {courseData.image ? (
+                {courseData.thumbnail ? (
                     <BackgroundImage
                         style={{
-                            backgroundImage: `url(${ASSET_URL}${courseData.image})`,
+                            backgroundImage: `url(${ASSET_URL}${courseData.thumbnail})`,
                         }}
                     />
                 ) : (
-                    <Skeleton width="100%" height={100} />
+                    <>
+                        <Skeleton width="100%" height={100} />
+                        <Skeleton width="100%" height={100} />
+                    </>
                 )}
                 <Box padding={2}>
                     <Box marginBottom={2}>
@@ -62,9 +80,9 @@ function CourseCard({ courseData }) {
                         >
                             <ClampLines
                                 text={courseData.description}
-                                lines={1}
+                                lines={2}
                                 buttons={false}
-                                ellipsis="  ......"
+                                ellipsis="  ..."
                             />
                         </Typography>
                     </Box>
@@ -79,12 +97,28 @@ function CourseCard({ courseData }) {
                         >
                             $ {courseData.price}
                         </Typography>
-                        <IconButton color="secondary">
+                        <IconButton
+                            color="secondary"
+                            onClick={() => handleCartItem(courseData.id)}
+                        >
                             <ShoppingBagTwoTone />
                         </IconButton>
                     </Box>
                 </Box>
             </Stack>
+            {cartData.isSuccess && (
+                <CustomAlert message={"Item added"} severity="success" />
+            )}
+            {cartData.isError && (
+                <CustomAlert
+                    message={
+                        cartData.error.error
+                            ? "You have to login first"
+                            : cartData.error.data
+                    }
+                    severity="error"
+                />
+            )}
         </Paper>
     );
 }
