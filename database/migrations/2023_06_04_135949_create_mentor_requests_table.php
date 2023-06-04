@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('course_contents', function (Blueprint $table) {
+        Schema::create('mentor_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("course_id");
-            $table->string("name");
-            $table->longText("description");
-            $table->string("type");
-            $table->integer("order");
-            $table->string("data");
+            $table->foreignId("user_id");
+            $table->foreignId("student_id");
+            $table->string("status")->nullable()->default("pending");
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_contents');
+        Schema::dropIfExists('mentor_requests');
     }
 };

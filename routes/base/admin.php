@@ -16,6 +16,11 @@ Route::get('mentors', [UsersController::class, "listmentors"])->name("user.mento
 Route::get('students', [UsersController::class, "liststudents"])->name("user.students");
 
 
+Route::get('mentorRequests', [UsersController::class, "listrequests"])->name("mentor.requests");
+Route::put('mentorRequests/{id}', [UsersController::class, "requestaccept"])->name("mentor.request.accept");
+Route::delete('mentorRequests/{id}', [UsersController::class, "requestdelete"])->name("mentor.request.destroy");
+
+
 Route::get('users/create', [UsersController::class, "create"])->name("user.create");
 Route::post('users/create', [UsersController::class, "store"])->name("user.store");
 

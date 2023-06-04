@@ -13,6 +13,8 @@ class CourseContent extends Model
     protected $fillable = [
         "name",
         "course_id",
+        "name",
+        "description",
         "type",
         "order",
         "data"

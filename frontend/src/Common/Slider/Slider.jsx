@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Carousel from "react-material-ui-carousel";
-import { Grid, Typography, useMediaQuery } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import SliderThumbnail from "./SliderThumbnail";
 import theme from "../../Theme/theme";
 import Loader from "../../Components/Loader";
@@ -72,7 +72,7 @@ export default function Slider(props) {
                     fontWeight={"bold"}
                     paddingTop="1.5rem"
                 >
-                    Maths - for Standard 3 Students | Episode 2
+                    {props.courseData.data[activeSlide].name}
                 </Typography>
             </Grid>
             <Grid item md={4} xs={12}>
@@ -83,6 +83,13 @@ export default function Slider(props) {
                     activeSlide={activeSlide}
                     setActiveSlide={setActiveSlide}
                 />
+            </Grid>
+            <Grid item xs={12}>
+                <Box paddingY={4}>
+                    <Typography variant="subtitle1" color="primary.light">
+                        {props.courseData.data[activeSlide].description}
+                    </Typography>
+                </Box>
             </Grid>
         </Grid>
     );

@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\CourseCart;
 use App\Models\Mentor;
+use App\Models\MentorRequest;
 use App\Models\PurchasedCourses;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -150,5 +151,31 @@ class DataController extends Controller
         } else {
             return response()->json("Purchase the course first Please", 400);
         }
+    }
+
+
+
+    // Mentor Request
+    public function requestStatus()
+    {
+        $request = MentorRequest::where("user_id",auth()->user()->id);
+
+        if($request->exists()) {
+
+            return response()->json(
+                $request->first()
+            );
+        } else {
+            return response()->json(false);
+        }
+    }
+    public function mentorRequest()
+    {
+        $request = MentorRequest::create([
+            "user_id" => auth()->user()->id,
+            "student_id" => auth()->user()->student->id
+        ]);
+
+        return response()->json($request);
     }
 }

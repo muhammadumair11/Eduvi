@@ -1,12 +1,4 @@
-import {
-    Box,
-    Container,
-    Grid,
-    Paper,
-    styled,
-    Typography,
-    Button,
-} from "@mui/material";
+import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
 import NewsLetter from "../../Common/Newsletter/NewsLetter";
 import PageHeader from "../../Common/PageHeader/PageHeader";
@@ -19,8 +11,24 @@ import {
     primarySubtitleProps,
 } from "../../HelperPropFunctions/typography";
 import MentorTabs from "./MentorTabs";
+import LoadingButton from "@mui/lab/LoadingButton/LoadingButton";
+import {
+    useMentorRequestMutation,
+    useMentorRequestStatusQuery,
+} from "../../Features/Mentors/mentorsApiSlice";
+import CustomAlert from "../../Components/CustomAlert";
 
 function JoinAsMentor() {
+    const status = useMentorRequestStatusQuery();
+    const [sendRequest, resquestResponse] = useMentorRequestMutation();
+
+    const handleMentorRequest = async () => {
+        const data = await sendRequest();
+        status.refetch();
+    };
+
+    console.log(status);
+
     return (
         <Container>
             <Grid container>
@@ -79,13 +87,35 @@ function JoinAsMentor() {
                             </Box>
                             <Box paddingY={3}>
                                 <MentorTabs />
-                                <Button
+                                <LoadingButton
+                                    sx={{ marginY: 2 }}
                                     variant="contained"
                                     size="large"
                                     color="primary"
+                                    loading={
+                                        resquestResponse.isLoading ||
+                                        status.isLoading
+                                    }
+                                    onClick={handleMentorRequest}
+                                    disabled={
+                                        status.data ||
+                                        status.data?.status == "pending" ||
+                                        status.data?.status == "Rejected"
+                                            ? true
+                                            : false
+                                    }
                                 >
-                                    Apply Now
-                                </Button>
+                                    <Typography
+                                        fontWeight="bold"
+                                        lineHeight={1}
+                                        variant="subtitle1"
+                                        color="inherit"
+                                    >
+                                        {status.data
+                                            ? status.data.status
+                                            : "Apply now"}
+                                    </Typography>
+                                </LoadingButton>
                             </Box>
                         </Grid>
                     </Grid>
@@ -106,6 +136,18 @@ function JoinAsMentor() {
                 <Grid item xs={12} paddingY={4}>
                     <NewsLetter />
                 </Grid>
+                {resquestResponse.isError && (
+                    <CustomAlert
+                        message={"Sign in as a student required"}
+                        severity="error"
+                    />
+                )}
+                {resquestResponse.isSuccess && (
+                    <CustomAlert
+                        message={"Request successfully sent, Congrats!!"}
+                        severity="success"
+                    />
+                )}
             </Grid>
         </Container>
     );

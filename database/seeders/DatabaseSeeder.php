@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(3)->create()->each(function ($user) {
+        User::factory(10)->create()->each(function ($user) {
             Student::create([
                 'user_id' => $user->id
             ]);

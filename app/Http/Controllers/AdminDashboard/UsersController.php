@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Mentor;
+use App\Models\MentorRequest;
 use App\Models\Social;
 use App\Models\Student;
 use App\Models\User;
@@ -72,6 +73,52 @@ class UsersController extends Controller
         return view('Admin.ManageUsers.student', [
             "students" => $data,
         ]);
+    }
+    /**
+     * Display a listing of the Mentors Requests.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listrequests()
+    {
+        return view("Admin.MentorRequest.index", [
+            "requests" => MentorRequest::all(),
+        ]);
+    }
+    /**
+     * Display a listing of the Mentors Requests.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function requestaccept($id)
+    {
+        $request = MentorRequest::find($id);
+
+        Student::find($request->student_id)->delete();
+        $user = User::find($request->user_id);
+        Mentor::create([
+            "user_id" => $request->user_id
+        ]);
+
+        $user->user_type = "mentor";
+        $request->status = "Accepted";
+        $request->save();
+        $user->save();
+
+        return redirect()->route("user.mentors");
+    }
+    /**
+     * Display a listing of the Mentors Requests.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function requestdelete($id)
+    {
+        $request = MentorRequest::find($id);
+        $request->status = "Rejected";
+        $request->save();
+
+        return redirect()->route("mentor.requests");
     }
 
     /**
@@ -266,6 +313,7 @@ class UsersController extends Controller
     {
         $admin = Admin::with('users')->where("user_id", $id)->delete();
         $mentor = Mentor::with('users')->where("user_id", $id)->delete();
+        MentorRequest::where("user_id", $id)->delete();
         $user = User::find($id)->delete();
 
         return redirect()->route("user.index");

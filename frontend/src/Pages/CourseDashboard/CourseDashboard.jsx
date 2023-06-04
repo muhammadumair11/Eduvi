@@ -31,21 +31,19 @@ export default function CourseDashboard(props) {
                         </Grid>
                         <Grid item xs={12} md={8} order={{ md: 2, xs: 3 }}>
                             <Box paddingY={4}>
-                                <Box marginY={1}>
-                                    <Typography
-                                        variant="h1"
-                                        marginBottom={2}
-                                        color="primary.light"
-                                    >
-                                        Course Description
-                                    </Typography>
-                                    <Typography
-                                        variant="subtitle1"
-                                        color="primary.light"
-                                    >
-                                        {data.description}
-                                    </Typography>
-                                </Box>
+                                <Typography
+                                    variant="h1"
+                                    marginBottom={2}
+                                    color="primary.light"
+                                >
+                                    Course Description
+                                </Typography>
+                                <Typography
+                                    variant="subtitle1"
+                                    color="primary.light"
+                                >
+                                    {data.description}
+                                </Typography>
                             </Box>
                         </Grid>
                         <Grid

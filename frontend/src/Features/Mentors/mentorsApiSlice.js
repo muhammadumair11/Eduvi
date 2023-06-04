@@ -7,7 +7,21 @@ export const mentorsApiSlice = apiSlice.injectEndpoints({
                 url: "/mentors",
             }),
         }),
+        mentorRequestStatus: builder.query({
+            query: () => ({
+                url: "/mentorRequest/status",
+            }),
+        }),
+        mentorRequest: builder.mutation({
+            query: () => ({
+                url: "/mentorRequest",
+            }),
+        }),
     }),
 });
 
-export const { useMentorsQuery } = mentorsApiSlice;
+export const {
+    useMentorsQuery,
+    useMentorRequestMutation,
+    useMentorRequestStatusQuery,
+} = mentorsApiSlice;

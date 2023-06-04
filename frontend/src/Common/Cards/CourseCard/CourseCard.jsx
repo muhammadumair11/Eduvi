@@ -36,7 +36,7 @@ const BackgroundImage = styled("div")(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
 }));
 
-function CourseCard({ courseData }) {
+function CourseCard({ courseData, purchased }) {
     const dispatch = useDispatch();
 
     const [addItem, cartData] = useAddCourseCartItemsMutation();
@@ -45,8 +45,6 @@ function CourseCard({ courseData }) {
         const data = await addItem(id).unwrap();
         dispatch(setCourseCart(data));
     }
-
-    console.log(courseData);
 
     return (
         <Paper variant="outlined">
@@ -88,22 +86,24 @@ function CourseCard({ courseData }) {
                     </Box>
 
                     <Rating value={4} />
-                    <Box {...flexBox("space-between", "center")}>
-                        <Typography
-                            {...secondaryHeadingBoldProps({
-                                variant: "h4",
-                                fontWeight: "bold",
-                            })}
-                        >
-                            $ {courseData.price}
-                        </Typography>
-                        <IconButton
-                            color="secondary"
-                            onClick={() => handleCartItem(courseData.id)}
-                        >
-                            <ShoppingBagTwoTone />
-                        </IconButton>
-                    </Box>
+                    {!purchased && (
+                        <Box {...flexBox("space-between", "center")}>
+                            <Typography
+                                {...secondaryHeadingBoldProps({
+                                    variant: "h4",
+                                    fontWeight: "bold",
+                                })}
+                            >
+                                $ {courseData.price}
+                            </Typography>
+                            <IconButton
+                                color="secondary"
+                                onClick={() => handleCartItem(courseData.id)}
+                            >
+                                <ShoppingBagTwoTone />
+                            </IconButton>
+                        </Box>
+                    )}
                 </Box>
             </Stack>
             {cartData.isSuccess && (

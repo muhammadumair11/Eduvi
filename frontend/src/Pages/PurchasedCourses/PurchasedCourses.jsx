@@ -29,18 +29,6 @@ import { Link } from "react-router-dom";
 function PurchasedCourses() {
     const purchasedCourses = useSelector(selectPurchasedCourses);
 
-    const dispatch = useDispatch();
-
-    const [removeItem, carItem] = useRemoveCourseCartItemsMutation();
-
-    async function handleCartItem(id) {
-        const data = await removeItem({
-            items: [...id],
-        }).unwrap();
-
-        dispatch(setCourseCart(data));
-    }
-
     return (
         <Container>
             {purchasedCourses ? (
@@ -73,6 +61,7 @@ function PurchasedCourses() {
                                             >
                                                 <CourseCard
                                                     courseData={item.course}
+                                                    purchased={true}
                                                 />
                                                 <Link
                                                     to={`/courses/${item.course.id}`}
@@ -106,7 +95,7 @@ function PurchasedCourses() {
                                         fontWeight={"bold"}
                                         color="initial"
                                     >
-                                        Cart is empty
+                                        You haven't Purchased any courses yet
                                     </Typography>
                                 </Grid>
                             )}
@@ -115,12 +104,6 @@ function PurchasedCourses() {
                     <Grid item xs={12}>
                         <NewsLetter />
                     </Grid>
-                    {carItem.isSuccess && (
-                        <CustomAlert
-                            message={"Item(s) removed"}
-                            severity="success"
-                        />
-                    )}
                 </Grid>
             ) : (
                 <Loader />

@@ -33,6 +33,24 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group ">
+                                                    <label class="form-label">Name</label>
+                                                    <div>
+                                                        <input
+                                                            type="text"
+                                                            name="name"
+                                                            class="form-control py-3"
+                                                            value="{{old("name")}}"
+                                                            ">
+                                                        </div>
+                                                    </div>
+                                                    @error("name")
+                                                        <div class="text-danger">
+                                                            {{$message}}
+                                                        </div>
+                                                    @enderror
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group ">
                                                         <label class="form-label">Type</label>
                                                         <select  name="type" class="form-control text-black-50 select2 w-100" >
                                                             @php
@@ -67,7 +85,7 @@
                                                         </div>
                                                     @enderror
                                             </div>
-                                            <div class="col-lg-12">
+                                            <div class="col-lg-6">
                                                 <div class="form-group ">
                                                     <label class="form-label">Video Link</label>
                                                     <div>
@@ -84,6 +102,19 @@
                                                             {{$message}}
                                                         </div>
                                                     @enderror
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group ">
+                                                    <label class="form-label">Description</label>
+                                                    <textarea class="form-control" name="description" style="width: 100%; height: 100px !important;" >
+                                                        {{old("description")}}
+                                                    </textarea>
+                                                    @error("description")
+                                                        <div class="text-danger">
+                                                            {{$message}}
+                                                        </div>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
                                             <div class="col-lg-12 text-right">

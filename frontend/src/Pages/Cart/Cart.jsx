@@ -221,6 +221,12 @@ function Cart() {
                             severity="success"
                         />
                     )}
+                    {purchasedResponses.isSuccess && (
+                        <CustomAlert
+                            message={"Item Purchased Successfully"}
+                            severity="success"
+                        />
+                    )}
                 </Grid>
             ) : (
                 <Loader />

@@ -65,6 +65,8 @@ class CourseController extends Controller
         CourseContent::create([
             "course_id" => $course->id,
             "type" => $request->type,
+            "name" => $request->name,
+            "description" => $request->description,
             "order" => $request->order,
             "data" => $request->data
         ]);
@@ -151,6 +153,8 @@ class CourseController extends Controller
 
 
         $courseContent->type = $request->type;
+        $courseContent->name = $request->name;
+        $courseContent->description = $request->description;
         $courseContent->order = $request->order;
         $courseContent->data = $request->data;
 

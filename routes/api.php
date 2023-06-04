@@ -41,6 +41,11 @@ Route::middleware("auth:api")->group(function () {
 
     Route::get('course/{id}', [DataController::class,'course_data']);
 
+    // Mentor Request
+    Route::get('mentorRequest', [DataController::class,'mentorRequest']);
+    Route::get('mentorRequest/status', [DataController::class,'requestStatus']);
+
+
     Route::post('update', [AuthApiController::class,'update']);
     Route::post('logout', [AuthApiController::class,'logout']);
 });

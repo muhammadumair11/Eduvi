@@ -1,5 +1,5 @@
 import { ScrollWrapper } from "../../Common/Wrapper/ScrollWrapper";
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Link, Paper, Skeleton, Typography } from "@mui/material";
 import React from "react";
 import {
     ImageWrapper,
@@ -33,11 +33,18 @@ function SliderThumbnail({
                 >
                     <Box display="flex" justifyContent="flex-start">
                         <TumbnailImage>
-                            <ImageWrapper
-                                size="cover"
-                                backgroundImage={items.thumbnail}
-                                backgroundColor={false}
-                            />
+                            {items.thumbnail ? (
+                                <ImageWrapper
+                                    size="cover"
+                                    backgroundImage={items.thumbnail}
+                                    backgroundColor={false}
+                                />
+                            ) : (
+                                <>
+                                    <Skeleton height="50%" />
+                                    <Skeleton height="50%" />
+                                </>
+                            )}
                         </TumbnailImage>
                         <Box padding=".5rem">
                             <Typography
@@ -45,14 +52,21 @@ function SliderThumbnail({
                                 fontWeight="bold"
                                 color="primary.light"
                             >
-                                {"fjkdlasj".slice(0, 30)}
+                                {item.name.slice(0, 20)}
                             </Typography>
                             <Typography
                                 variant="subtitle2"
-                                color="secondary"
-                                fontWeight="600"
+                                color="secondary.light"
                             >
-                                03:00
+                                Order {item.order}
+                            </Typography>
+                            <Typography
+                                variant="subtitle2"
+                                color="secondary.light"
+                            >
+                                <Link href={item.data} target="_blank">
+                                    Youtube Link
+                                </Link>
                             </Typography>
                         </Box>
                     </Box>

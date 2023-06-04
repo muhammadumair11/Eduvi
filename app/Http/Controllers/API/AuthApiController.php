@@ -46,8 +46,10 @@ class AuthApiController extends Controller
         if (Auth::attempt($credentials)) {
             if(Auth::user()->user_type == "student") {
                 $user = User::with("student")->find(Auth::id());
+            } else if(Auth::user()->user_type == "mentor") {
+                $user = User::with("mentors")->find(Auth::id());
             } else {
-                $user = Auth::user();
+                $user = User::with("admins")->find(Auth::id());
             }
             $token = $user->createToken('MyApp')->accessToken;
             return response()->json(['token' => $token, "user" => $user], 200);
@@ -112,16 +114,21 @@ class AuthApiController extends Controller
     public function refresh(Request $request) {
         if(Auth::user()->user_type == "student") {
             $user = User::with("student")->find(Auth::id());
+        } else if(Auth::user()->user_type == "mentor") {
+            $user = User::with("mentors")->find(Auth::id());
         } else {
-            $user = Auth::user();
+            $user = User::with("admins")->find(Auth::id());
         }
         return response()->json(["user" => $user]);
     }
 
 
 
-    public function logout(Request $request) {
-        $request->user()->token()->revoke();
-        return response()->json(['logout' => true]);
+    public function logout() {
+        if(auth()->user()->token()->revoke()) {
+            return response()->json(['logout' => true]);
+        } else {
+            return response()->json(['logout' => false]);
+        }
     }
 }
