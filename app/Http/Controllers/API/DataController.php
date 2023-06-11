@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\CourseCart;
+use App\Models\CourseRating;
 use App\Models\Mentor;
 use App\Models\MentorRequest;
 use App\Models\PurchasedCourses;
@@ -15,6 +16,14 @@ use Illuminate\Support\Facades\Validator;
 
 class DataController extends Controller
 {
+
+    function search() {
+        return response()->json(
+            Course::search(
+                request(["search", "sub_category"])
+            )->get()
+        );
+    }
     public function mentors()
     {
         $mentors = Mentor::with(["users" => function ($q) {
@@ -52,18 +61,18 @@ class DataController extends Controller
         if($request->all()) {
             return response()->json(
                 // $request->sub_category
-                Course::where("sub_category_id", $request->sub_category)->get()
+                Course::where("sub_category_id", $request->sub_category)->withAvg("courseratings", "rating")->get()
             );
         } else {
             return response()->json(
-                Course::all()
+                Course::withAvg("courseratings", "rating")->get()
             );
         }
     }
     public function mentorsCourses($id)
     {
         return response()->json(
-            Course::where("mentor_id", $id)->get()
+            Course::where("mentor_id", $id)->withAvg("courseratings", "rating")->get()
         );
     }
 
@@ -146,7 +155,7 @@ class DataController extends Controller
 
         if(PurchasedCourses::where("course_id", $id)->where("student_id", $student_id)->exists()) {
             return response()->json(
-                Course::with(["data"])->find($id)
+                Course::with(["data"])->withAvg("courseratings", "rating")->find($id)
             );
         } else {
             return response()->json("Purchase the course first Please", 400);
@@ -177,5 +186,29 @@ class DataController extends Controller
         ]);
 
         return response()->json($request);
+    }
+
+    public function courseRating(Request $request)
+    {
+        $student_id = auth()->user()->student->id;
+        $course_id = $request->courseID;
+
+        $updateCheck = CourseRating::where("course_id", $course_id)->where("student_id", $student_id)->exists();
+
+        if($updateCheck) {
+            $rating = CourseRating::where("course_id", $course_id)->where("student_id", $student_id)->first();
+            $rating->rating = $request->rating;
+            $rating->save();
+        } else {
+            CourseRating::create([
+                "course_id" => $course_id,
+                "student_id" => $student_id,
+                "rating" => $request->rating
+            ]);
+        }
+
+        return response()->json(
+            Course::withAvg("courseratings", "rating")->get()
+        );
     }
 }

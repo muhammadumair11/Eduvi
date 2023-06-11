@@ -2,7 +2,14 @@ import * as React from "react";
 import Menu from "@mui/material/Menu";
 import Tooltip from "@mui/material/Tooltip";
 
-export default function CustomMenu({ id, title, children, position, tooltip }) {
+export default function CustomMenu({
+    id,
+    title,
+    children,
+    position,
+    tooltip,
+    ...props
+}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -39,6 +46,7 @@ export default function CustomMenu({ id, title, children, position, tooltip }) {
                 open={open}
                 onClose={handleClose}
                 onClick={handleClose}
+                {...props}
                 PaperProps={{
                     elevation: 1,
                     sx: {

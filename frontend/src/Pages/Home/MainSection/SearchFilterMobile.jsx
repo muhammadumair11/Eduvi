@@ -13,14 +13,25 @@ import { flexBox } from "../../../HelperPropFunctions/flexBox";
 import { primarySubtitleProps } from "../../../HelperPropFunctions/typography";
 import { useAllSubCategoriesQuery } from "../../../Features/Categories/categoriesApiSlice";
 import Loader from "../../../Components/Loader";
+import { useSearchCoursesMutation } from "../../../Features/Courses/coursesApiSlice";
+import { useFormik } from "formik";
 
 function SearchFilterMobile() {
-    const [filter, setFilter] = useState({
-        category: "",
-        course: "",
-    });
-
     const { data, isLoading } = useAllSubCategoriesQuery();
+    const [searchFilter, searchResponse] = useSearchCoursesMutation();
+
+    const formik = useFormik({
+        enableReinitialize: true,
+        initialValues: {
+            sub_category: !isLoading && data[0]?.id,
+            name_sub_category: !isLoading && data[0]?.name_sub_category,
+            search: "",
+        },
+        onSubmit: async (values) => {
+            const responseData = await searchFilter(values).unwrap();
+            console.log(responseData);
+        },
+    });
     return !isLoading ? (
         <Stack padding={0} spacing={1}>
             <CustomMenu
@@ -46,9 +57,7 @@ function SearchFilterMobile() {
                         endIcon={<ExpandMoreTwoTone />}
                     >
                         <Typography variant="subtitle2">
-                            {data
-                                ? data[0]?.name_sub_category
-                                : filter.category}
+                            {formik.values.name_sub_category}
                         </Typography>
                     </Button>
                 }
@@ -56,12 +65,13 @@ function SearchFilterMobile() {
                 {data.map((el, i) => (
                     <MenuItem
                         key={el.id}
-                        onClick={() =>
-                            setFilter((prevState) => ({
-                                ...prevState,
-                                category: el.name_sub_category,
-                            }))
-                        }
+                        onClick={() => {
+                            formik.setFieldValue("sub_category", el.id);
+                            formik.setFieldValue(
+                                "name_sub_category",
+                                el.name_sub_category
+                            );
+                        }}
                         sx={{
                             minWidth: "200px",
                         }}
@@ -83,13 +93,8 @@ function SearchFilterMobile() {
                 variant="outlined"
                 size="small"
                 placeholder="Class/Course"
-                value={filter.course}
-                onChange={(e) =>
-                    setFilter((prevState) => ({
-                        ...prevState,
-                        course: e.target.value,
-                    }))
-                }
+                value={formik.values.search}
+                onChange={formik.handleChange("search")}
                 fullWidth
                 color="secondary"
             />

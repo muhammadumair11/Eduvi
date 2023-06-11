@@ -25,7 +25,12 @@ Route::get('subcategories', [DataController::class,'allsubcategories']);
 Route::get('categories/{id}', [DataController::class,'subcategories']);
 
 Route::get('courses', [DataController::class,'courses']);
-Route::get('mentorCourses/{id}', [DataController::class,'mentorsCourses']);
+Route::get('courses', [DataController::class,'courses']);
+
+
+Route::post('search', [DataController::class,'search']);
+
+
 
 
 Route::middleware("auth:api")->group(function () {
@@ -44,6 +49,11 @@ Route::middleware("auth:api")->group(function () {
     // Mentor Request
     Route::get('mentorRequest', [DataController::class,'mentorRequest']);
     Route::get('mentorRequest/status', [DataController::class,'requestStatus']);
+
+    // Course rating
+    Route::post('courseRating', [DataController::class,'courseRating']);
+
+
 
 
     Route::post('update', [AuthApiController::class,'update']);

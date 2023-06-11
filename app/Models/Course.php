@@ -20,13 +20,28 @@ class Course extends Model
         "sub_category_id",
     ];
 
+    public function scopeSearch($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn($query, $search) =>
+            $query->where(fn($query) =>
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%')
+            )
+        );
+        $query->when($filters['sub_category'] ?? false, fn($query, $sub_category) =>
+            $query->where(fn($query) =>
+                $query->where('sub_category_id', $sub_category)
+            )
+        );
+
+    }
 
     /**
      * Get the mentor associated with the Course
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function mentor(): HasOne
+    public function mentors(): HasOne
     {
         return $this->hasOne(Mentor::class, "id");
     }
@@ -68,5 +83,15 @@ class Course extends Model
     public function purchased_courses(): HasMany
     {
         return $this->hasMany(PurchasedCourses::class, 'course_id');
+    }
+
+    /**
+     * Get all of the courseratings for the Course
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function courseratings(): HasMany
+    {
+        return $this->hasMany(CourseRating::class, 'course_id');
     }
 }

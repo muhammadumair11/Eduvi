@@ -72,7 +72,7 @@ export default function Slider(props) {
                     fontWeight={"bold"}
                     paddingTop="1.5rem"
                 >
-                    {props.courseData.data[activeSlide].name}
+                    {props.courseData?.data[activeSlide]?.name}
                 </Typography>
             </Grid>
             <Grid item md={4} xs={12}>

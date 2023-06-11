@@ -5,8 +5,8 @@ import axios from "axios";
 // const API_URL = "http://127.0.0.1:8000/api/";
 // export const APP_URL = "http://0.0.0.0/api/";
 // export const ASSET_URL = "http://0.0.0.0/storage/";
-export const APP_URL = "http://192.168.100.8/api/";
-export const ASSET_URL = "http://192.168.100.8/storage/";
+export const APP_URL = "http://192.168.100.6/api/";
+export const ASSET_URL = "http://192.168.100.6/storage/";
 
 const baseQuery = fetchBaseQuery({
     baseUrl: APP_URL,

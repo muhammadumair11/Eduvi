@@ -25,7 +25,7 @@ import { useRemoveCourseCartItemsMutation } from "../../Features/CourseCart/cour
 import CustomAlert from "../../Components/CustomAlert";
 import { useAddPurchasedCoursesMutation } from "../../Features/PurchasedCourses/purchasedCoursesApiSlice";
 import { setPurchasedCourses } from "../../Features/PurchasedCourses/purchasedCoursesSlice";
-function Cart() {
+function SearchCourses() {
     const cartData = useSelector(selectCart);
     const dispatch = useDispatch();
 
@@ -234,4 +234,4 @@ function Cart() {
     );
 }
 
-export default Cart;
+export default SearchCourses;

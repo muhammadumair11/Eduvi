@@ -10,16 +10,13 @@ import {
 import React from "react";
 
 import cardImage from "../../Assets/Images/mentorsprimarycard.png";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import NewsLetter from "../../Common/Newsletter/NewsLetter";
+import PageHeader from "../../Common/PageHeader/PageHeader";
 import {
     MobileContainer,
     WebContainer,
 } from "../../Common/Wrapper/ResponsiveContainers";
-import CustomMenu from "../../Components/CustomMenu";
-import { primarySubtitleProps } from "../../HelperPropFunctions/typography";
-import { ArrowDownward } from "@mui/icons-material";
-import PageHeader from "../../Common/PageHeader/PageHeader";
 
 function Mentors() {
     return (

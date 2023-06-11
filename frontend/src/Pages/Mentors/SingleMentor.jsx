@@ -27,6 +27,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { selectMentors } from "../../Features/Mentors/mentorSlice";
 import Loader from "../../Components/Loader";
 import CoursesTab from "./SingleMentorTabContent/CoursesTab";
+import mentorBgImaage from "../../Assets/Images/mentor-images/mentor-bg-pattern.jpg";
 import { ASSET_URL } from "../../Services/apiSlice";
 
 const SingleMentorImage = styled("img")(({ theme }) => ({
@@ -35,14 +36,28 @@ const SingleMentorImage = styled("img")(({ theme }) => ({
     width: "80%",
     height: "150px",
     objectFit: "cover",
+
+    border: `5px solid ${theme.palette.secondary.light}`,
+
     [theme.breakpoints.down("sm")]: {
         width: "40%",
     },
 
     position: "absolute",
     bottom: "0px",
-    left: "50%",
+    left: "55%",
     transform: "translate(-50%, -0%)",
+}));
+
+const BackgroundImage = styled("div")(({ theme }) => ({
+    height: "100%",
+    width: "100%",
+
+    backgroundPosition: "center",
+    backgroundSize: "100%",
+    backgroundRepeat: "no-repeat",
+
+    borderRadius: theme.shape.borderRadius,
 }));
 
 function SingleMentor() {
@@ -72,7 +87,13 @@ function SingleMentor() {
         <Container>
             <Grid container>
                 <Grid item xs={12}>
-                    <PrimaryCard height={"200px"}></PrimaryCard>
+                    <PrimaryCard height={"200px"}>
+                        <BackgroundImage
+                            style={{
+                                backgroundImage: `url(${mentorBgImaage})`,
+                            }}
+                        />
+                    </PrimaryCard>
                 </Grid>
                 <Grid item lg={8} xs={12} paddingY={2}>
                     <Grid container>

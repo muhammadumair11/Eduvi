@@ -2,6 +2,7 @@ import { Box, Paper, Stack, Typography } from "@mui/material";
 import React from "react";
 import { CustomIcon } from "../../Common/Wrapper/IconWrapper";
 import { stackBox } from "../../HelperPropFunctions/flexBox";
+import { useMentorCoursesQuery } from "../../Features/Courses/coursesApiSlice";
 import {
     primarySubtitleProps,
     secondarySubtitleProps,
@@ -24,6 +25,8 @@ function ListItem({ title, children }) {
 }
 
 function InfoCard({ info }) {
+    const { data, isLoading } = useMentorCoursesQuery(info.id);
+
     const Icons = {
         options: {
             width: "25",
@@ -53,7 +56,7 @@ function InfoCard({ info }) {
                             fontWeight: "bold",
                         })}
                     >
-                        30
+                        {data ? data.length : "Loading"}
                     </Typography>
                 </ListItem>
                 <ListItem title="Rating">
@@ -96,7 +99,7 @@ function InfoCard({ info }) {
                             fontWeight: "bold",
                         })}
                     >
-                        {info.graduated}
+                        {info.graduated ? "Yes" : "No"}
                     </Typography>
                 </ListItem>
                 <ListItem title="Language">

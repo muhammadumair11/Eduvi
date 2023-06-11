@@ -45,7 +45,7 @@ function CourseInfoCard({ courseInfo }) {
                         $ 49.00
                     </Typography>
                 </ListItem>
-                <ListItem title="Instructor">
+                {/* <ListItem title="Instructor">
                     <Typography
                         {...primarySubtitleProps({
                             fontWeight: "bold",
@@ -54,7 +54,7 @@ function CourseInfoCard({ courseInfo }) {
                     >
                         <Link to="#">Wade Warren</Link>
                     </Typography>
-                </ListItem>
+                </ListItem> */}
                 <ListItem title="Rating">
                     <Typography
                         {...primarySubtitleProps({
@@ -85,36 +85,6 @@ function CourseInfoCard({ courseInfo }) {
                         {courseInfo.data.length}
                     </Typography>
                 </ListItem>
-                {/* <ListItem title="Quizzes">
-                    <Typography
-                        {...primarySubtitleProps({
-                            light: "true",
-                            fontWeight: "bold",
-                        })}
-                    >
-                        5
-                    </Typography>
-                </ListItem>
-                <ListItem title="Certificates">
-                    <Typography
-                        {...primarySubtitleProps({
-                            light: "true",
-                            fontWeight: "bold",
-                        })}
-                    >
-                        Yes
-                    </Typography>
-                </ListItem>
-                <ListItem title="Language">
-                    <Typography
-                        {...primarySubtitleProps({
-                            light: "true",
-                            fontWeight: "bold",
-                        })}
-                    >
-                        French, English
-                    </Typography>
-                </ListItem> */}
                 <ListItem title="Access">
                     <Typography
                         {...primarySubtitleProps({

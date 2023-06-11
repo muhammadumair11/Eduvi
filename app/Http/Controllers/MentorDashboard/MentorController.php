@@ -25,7 +25,15 @@ class MentorController extends Controller
      */
     public function index()
     {
-        return view("Mentor.dashboard");
+        $user = User::with("mentors","socials")
+            ->where("id", auth()->user()->id)
+            ->first();
+
+
+
+        return view("Mentor.Profile.index", [
+            'user' => $user,
+        ]);
     }
     /**
      * Display a listing of the resource.

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { RouterProvider, useNavigate } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import router from "./Routes/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useLogout, useRefreshQuery } from "./Features/auth/authApiSlice";
@@ -8,10 +8,7 @@ import { useCoursesQuery } from "./Features/Courses/coursesApiSlice";
 import { useCourseCartItemsQuery } from "./Features/CourseCart/courseCartApiSlice";
 import { setMentors } from "./Features/Mentors/mentorSlice";
 import { setCourses } from "./Features/Courses/coursesSlice";
-import {
-    clearCourseCart,
-    setCourseCart,
-} from "./Features/CourseCart/courseCartSlice";
+import { setCourseCart } from "./Features/CourseCart/courseCartSlice";
 import {
     logOut,
     selectCurrentUser,
@@ -21,7 +18,6 @@ import { usePurchasedCoursesQuery } from "./Features/PurchasedCourses/purchasedC
 import { setPurchasedCourses } from "./Features/PurchasedCourses/purchasedCoursesSlice";
 import { Box, Typography } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
-import Loader from "./Components/Loader";
 
 function App() {
     const dispatch = useDispatch();
@@ -106,7 +102,9 @@ function App() {
             </LoadingButton>
         </Box>
     ) : (
-        <RouterProvider router={router} />
+        <>
+            <RouterProvider router={router} />
+        </>
     );
 }
 

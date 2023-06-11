@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\AdminDashboard\AdminController;
 use App\Http\Controllers\AdminDashboard\CategoriesController;
+use App\Http\Controllers\AdminDashboard\CourseController;
 use App\Http\Controllers\AdminDashboard\MentorController;
 use App\Http\Controllers\AdminDashboard\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [AdminController::class, "index"])->name("admin.dashboard");
+
 
 // Add Admin
 
@@ -45,6 +47,11 @@ Route::put('categories/{id}/editSubCategory', [CategoriesController::class, "upd
 
 Route::delete('categories/{id}/deleteCategory', [CategoriesController::class, "destroyCategory"])->name("categories.destroyCategory");
 Route::delete('categories/{id}/deleteSubCategory', [CategoriesController::class, "destroySubCategory"])->name("categories.destroySubCategory");
+
+
+// Courses
+
+Route::get("course", [CourseController::class, "index"])->name("course.admin.index");
 
 
 

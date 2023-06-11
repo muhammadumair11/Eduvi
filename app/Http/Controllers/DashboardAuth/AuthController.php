@@ -19,10 +19,10 @@ class AuthController extends Controller
         if (Auth::attempt($credentials) && Auth::user()->user_type != "student") {
             // Authentication passed...
             if(Auth::user()->user_type == "admin") {
-                return redirect("/admin/dashboard");
+                return redirect()->route("admin.dashboard");
             } elseif (Auth::user()->user_type == "mentor") {
                 # code...
-                return redirect("/mentor/dashboard");
+                return redirect()->route("mentor.dashboard");
             }
         }
         return redirect('/');

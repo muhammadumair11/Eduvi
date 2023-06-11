@@ -116,7 +116,7 @@
                                                 <div class="form-group ">
                                                     <label class="form-label">Description</label>
                                                     <textarea class="form-control" name="description" style="width: 100%; height: 100px !important;" >
-                                                        {{$course->description}}
+                                                        {{$coursecontent->description}}
                                                     </textarea>
                                                 </div>
                                             </div>

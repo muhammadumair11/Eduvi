@@ -1,9 +1,7 @@
 import React, { Suspense } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { ScrollRestoration, createBrowserRouter } from "react-router-dom";
 import DefaultLayout from "../Layouts/DefaultLayout";
 import Home from "../Pages/Home/Home";
-import College from "../Pages/Home/LessonSection/College";
-import KinderGarten from "../Pages/Home/LessonSection/KinderGarten";
 import Courses from "../Pages/Courses/Courses";
 import Mentors from "../Pages/Mentors/Mentors";
 import Loader from "../Components/Loader";
@@ -39,7 +37,12 @@ import PurchasedCourses from "../Pages/PurchasedCourses/PurchasedCourses";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <DefaultLayout />,
+        element: (
+            <>
+                <ScrollRestoration />
+                <DefaultLayout />
+            </>
+        ),
         children: [
             // Pages
             // Home

@@ -24,6 +24,9 @@ import { useAddCourseCartItemsMutation } from "../../../Features/CourseCart/cour
 import { useDispatch } from "react-redux";
 import { setCourseCart } from "../../../Features/CourseCart/courseCartSlice";
 import CustomAlert from "../../../Components/CustomAlert";
+import { useNavigate } from "react-router-dom";
+import { useCourseRatingMutation } from "../../../Features/Courses/coursesApiSlice";
+import { setCourses } from "../../../Features/Courses/coursesSlice";
 
 const BackgroundImage = styled("div")(({ theme }) => ({
     height: "200px",
@@ -38,12 +41,22 @@ const BackgroundImage = styled("div")(({ theme }) => ({
 
 function CourseCard({ courseData, purchased }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [addItem, cartData] = useAddCourseCartItemsMutation();
+    const [rating, ratingResponses] = useCourseRatingMutation();
 
     async function handleCartItem(id) {
         const data = await addItem(id).unwrap();
         dispatch(setCourseCart(data));
+        navigate("/cart");
+    }
+    async function handleRating(ratingValue) {
+        const { data } = await rating({
+            courseID: courseData.id,
+            rating: ratingValue,
+        });
+        dispatch(setCourses(data));
     }
 
     return (
@@ -85,7 +98,14 @@ function CourseCard({ courseData, purchased }) {
                         </Typography>
                     </Box>
 
-                    <Rating value={4} />
+                    <Rating
+                        value={
+                            courseData.courseratings_avg_rating
+                                ? courseData.courseratings_avg_rating
+                                : 1
+                        }
+                        onChange={(e, value) => handleRating(value)}
+                    />
                     {!purchased && (
                         <Box {...flexBox("space-between", "center")}>
                             <Typography
@@ -116,6 +136,18 @@ function CourseCard({ courseData, purchased }) {
                             ? "You have to login first"
                             : cartData.error.data
                     }
+                    severity="error"
+                />
+            )}
+            {ratingResponses.isSuccess && (
+                <CustomAlert
+                    message={"Thank you for your feedback"}
+                    severity="success"
+                />
+            )}
+            {ratingResponses.isError && (
+                <CustomAlert
+                    message={"You have to login first"}
                     severity="error"
                 />
             )}

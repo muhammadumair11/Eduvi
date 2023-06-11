@@ -6,23 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class MentorRating extends Model
+class CourseRating extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'mentor_id',
-        'rating',
+        "student_id",
+        "course_id",
+        "rating",
     ];
 
     /**
-     * Get the mentors that owns the MentorRating
+     * Get the course that owns the CourseRating
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function mentors(): BelongsTo
+    public function course(): BelongsTo
     {
-        return $this->belongsTo(Mentor::class, 'mentor_id');
+        return $this->belongsTo(Course::class, 'course_id');
     }
 }
