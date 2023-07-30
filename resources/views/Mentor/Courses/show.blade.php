@@ -16,6 +16,9 @@
         <!--page-header closed-->
 
         <div class="section-body">
+            {{-- {{
+                dd($course)
+            }} --}}
 
             <!--row open-->
             <div class="row">

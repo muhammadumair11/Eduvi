@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create()->each(function ($user) {
+        User::factory(3)->create()->each(function ($user) {
             Student::create([
                 'user_id' => $user->id
             ]);
@@ -32,11 +32,11 @@ class DatabaseSeeder extends Seeder
             ]);
         });
 
-        Category::factory(5)->create()->each(function ($category) {
-            SubCategory::factory(3)->create([
-                "category_id" => $category->id
-            ]);
-        });
+        // Category::factory(5)->create()->each(function ($category) {
+        //     SubCategory::factory(3)->create([
+        //         "category_id" => $category->id
+        //     ]);
+        // });
 
 
         $admin = User::first();
@@ -73,9 +73,9 @@ class DatabaseSeeder extends Seeder
             'user_id' => $user->id,
         ]);
 
-        Course::factory(20)->create([
-            "mentor_id" => $mentor->id
-        ]);
+        // Course::factory(20)->create([
+        //     "mentor_id" => $mentor->id
+        // ]);
 
 
 

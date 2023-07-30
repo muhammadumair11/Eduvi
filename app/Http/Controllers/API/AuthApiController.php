@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use App\Models\Mentor;
+use App\Models\Social;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,10 +29,43 @@ class AuthApiController extends Controller
         }
 
         $user = User::create([
+            'username' => $request->username,
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            "user_type" => "student"
         ]);
+
+        switch ($user->user_type) {
+            case 'admin':
+                Admin::create([
+                    'user_id' => $user->id
+                ]);
+                # code...
+            break;
+            case 'mentor':
+                Mentor::create([
+                    'user_id' => $user->id
+                ]);
+                Social::create([
+                    "user_id" => $user->id
+                ]);
+                # code...
+            break;
+            case 'student':
+                Student::create([
+                    'user_id' => $user->id
+                ]);
+                Social::create([
+                    "user_id" => $user->id
+                ]);
+                # code...
+            break;
+
+            default:
+                # code...
+                break;
+        }
 
         $token = $user->createToken('MyApp')->accessToken;
 

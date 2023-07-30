@@ -2,7 +2,6 @@ import { Box, Paper, Rating, Stack, styled, Typography } from "@mui/material";
 import React from "react";
 import ClampLines from "react-clamp-lines";
 
-import image from "../../../Assets/Images/mentor-images/1.png";
 import {
     primaryHeadingBoldProps,
     primarySubtitleProps,

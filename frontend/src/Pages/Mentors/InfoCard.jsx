@@ -59,7 +59,7 @@ function InfoCard({ info }) {
                         {data ? data.length : "Loading"}
                     </Typography>
                 </ListItem>
-                <ListItem title="Rating">
+                {/* <ListItem title="Rating">
                     <div>
                         <Typography
                             {...primarySubtitleProps({
@@ -79,7 +79,7 @@ function InfoCard({ info }) {
                             )
                         </Typography>
                     </div>
-                </ListItem>
+                </ListItem> */}
                 <ListItem title="Experience">
                     <Typography
                         {...primarySubtitleProps({

@@ -2,11 +2,21 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { logOut, setCredentials } from "../Features/auth/authSlice";
 import axios from "axios";
 
-// const API_URL = "http://127.0.0.1:8000/api/";
-// export const APP_URL = "http://0.0.0.0/api/";
-// export const ASSET_URL = "http://0.0.0.0/storage/";
-export const APP_URL = "http://192.168.100.6/api/";
-export const ASSET_URL = "http://192.168.100.6/storage/";
+const LOCAL_NETWORK = "LOCAL_NETWORK";
+const LOCAL_ENVIRONMENT = "LOCAL_ENVIRONMENT";
+
+const state = LOCAL_NETWORK;
+
+const localNetworkUrl = "http://192.168.100.6/api/";
+const localNetworkAssetUrl = "http://192.168.100.6/storage/";
+
+const localEnvironmentUrl = "http://0.0.0.0/api/";
+const localEnvironmentAssetUrl = "http://0.0.0.0/storage/";
+
+export const APP_URL =
+    state == LOCAL_NETWORK ? localNetworkUrl : localEnvironmentUrl;
+export const ASSET_URL =
+    state == LOCAL_NETWORK ? localNetworkAssetUrl : localEnvironmentAssetUrl;
 
 const baseQuery = fetchBaseQuery({
     baseUrl: APP_URL,

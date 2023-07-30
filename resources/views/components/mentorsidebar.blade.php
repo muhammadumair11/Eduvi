@@ -9,10 +9,6 @@
         <ul class="slide-menu">
             <li><a class="slide-item"  href="{{ route("course.create") }}"><span> Add Courses </span></a></li>
             <li><a class="slide-item"  href="{{ route("course.index") }}"><span> All Courses </span></a></li>
-            <li><a class="slide-item" href="{{url('profile')}}"><span>Profile</span></a></li>
-            <li><a class="slide-item" href="{{url('login')}}"><span>Login</span></a></li>
-            <li><a class="slide-item" href="{{url('register')}}"><span>Register</span></a></li>
-            <li><a class="slide-item" href="{{url('formadvance')}}"><span>Advance Form </span></a></li>
         </ul>
     </li>
 

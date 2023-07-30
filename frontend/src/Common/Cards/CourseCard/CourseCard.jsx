@@ -12,7 +12,6 @@ import {
 import React from "react";
 import ClampLines from "react-clamp-lines";
 
-import image from "../../../Assets/Images/mentor-images/1.png";
 import { flexBox } from "../../../HelperPropFunctions/flexBox";
 import {
     primaryHeadingBoldProps,
@@ -82,7 +81,7 @@ function CourseCard({ courseData, purchased }) {
                             })}
                             marginBottom={1}
                         >
-                            {courseData.name}
+                            {courseData.name.slice(0, 20)}
                         </Typography>
                         <Typography
                             {...primarySubtitleProps({

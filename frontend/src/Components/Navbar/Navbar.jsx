@@ -124,8 +124,8 @@ function Navbar({ auth }) {
                                                 border: `2px solid ${theme.palette.secondary.light}`,
                                             })}
                                             src={
-                                                auth.student.image
-                                                    ? `${ASSET_URL}${auth.student.image}`
+                                                auth.student?.image
+                                                    ? `${ASSET_URL}${auth.student?.image}`
                                                     : ""
                                             }
                                         ></Avatar>
@@ -135,7 +135,7 @@ function Navbar({ auth }) {
                                 <AccountWrapper>
                                     <Box {...flexBox("center", "", "")}>
                                         <AccountAvatar
-                                            bgImage={`${ASSET_URL}${auth.student.image}`}
+                                            bgImage={`${ASSET_URL}${auth.student?.image}`}
                                         />
                                         <Box padding={1}>
                                             <NavLink

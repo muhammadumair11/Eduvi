@@ -55,7 +55,7 @@ function CourseInfoCard({ courseInfo }) {
                         <Link to="#">Wade Warren</Link>
                     </Typography>
                 </ListItem> */}
-                <ListItem title="Rating">
+                {/* <ListItem title="Rating">
                     <Typography
                         {...primarySubtitleProps({
                             light: "true",
@@ -74,7 +74,7 @@ function CourseInfoCard({ courseInfo }) {
                     >
                         30 hours
                     </Typography>
-                </ListItem>
+                </ListItem> */}
                 <ListItem title="Lessons">
                     <Typography
                         {...primarySubtitleProps({

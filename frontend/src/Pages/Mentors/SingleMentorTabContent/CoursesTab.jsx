@@ -14,12 +14,7 @@ function CoursesTab({ mentorId }) {
         <Grid container spacing={2}>
             {!isLoading ? (
                 <>
-                    {data.map((item) => (
-                        <Grid item key={item.id} lg={6}>
-                            <CourseCard courseData={item} />
-                        </Grid>
-                    ))}
-                    {data.length == 0 && (
+                    {data == undefined ? (
                         <Typography
                             variant="h3"
                             fontWeight="bold"
@@ -27,6 +22,12 @@ function CoursesTab({ mentorId }) {
                         >
                             No Courses
                         </Typography>
+                    ) : (
+                        data.map((item) => (
+                            <Grid item key={item.id} lg={6}>
+                                <CourseCard courseData={item} />
+                            </Grid>
+                        ))
                     )}
                 </>
             ) : (

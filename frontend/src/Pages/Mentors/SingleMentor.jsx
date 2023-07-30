@@ -13,7 +13,6 @@ import React, { useEffect, useState } from "react";
 import NewsLetter from "../../Common/Newsletter/NewsLetter";
 import PrimaryCard from "../../Components/PrimaryCard";
 
-import image from "../../Assets/Images/mentor-images/1.png";
 import {
     primaryHeadingBoldProps,
     primarySubtitleProps,

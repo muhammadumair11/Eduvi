@@ -194,7 +194,7 @@ export default function Signup({ status, canResetPassword }) {
             {isError && (
                 <CustomAlert
                     message={
-                        "Sign up Failed, Please Check your email and passport"
+                        "Sign up Failed, Please Check your email and password"
                     }
                     severity="error"
                 />

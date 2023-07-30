@@ -12,13 +12,13 @@ import {
 import React from "react";
 import ClampLines from "react-clamp-lines";
 
-import image from "../../../Assets/Images/mentor-images/1.png";
 import { flexBox } from "../../../HelperPropFunctions/flexBox";
 import {
     primaryHeadingBoldProps,
     primarySubtitleProps,
     secondaryHeadingBoldProps,
 } from "../../../HelperPropFunctions/typography";
+import { ASSET_URL } from "../../../Services/apiSlice";
 
 const BackgroundImage = styled("div")(({ theme }) => ({
     height: "auto",
@@ -32,13 +32,14 @@ const BackgroundImage = styled("div")(({ theme }) => ({
 }));
 
 function HorizontalCourseCard({ courseData }) {
+    console.log(courseData);
     return (
         <Paper variant="outlined">
             <Stack direction="row" padding={1}>
-                {courseData.image ? (
+                {courseData.thumbnail ? (
                     <BackgroundImage
                         style={{
-                            backgroundImage: `url(${ASSET_URL}${courseData.image})`,
+                            backgroundImage: `url(${ASSET_URL}${courseData.thumbnail})`,
                         }}
                     />
                 ) : (

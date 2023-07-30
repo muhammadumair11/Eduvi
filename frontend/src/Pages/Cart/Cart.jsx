@@ -25,6 +25,7 @@ import { useRemoveCourseCartItemsMutation } from "../../Features/CourseCart/cour
 import CustomAlert from "../../Components/CustomAlert";
 import { useAddPurchasedCoursesMutation } from "../../Features/PurchasedCourses/purchasedCoursesApiSlice";
 import { setPurchasedCourses } from "../../Features/PurchasedCourses/purchasedCoursesSlice";
+import { Link } from "react-router-dom";
 function Cart() {
     const cartData = useSelector(selectCart);
     const dispatch = useDispatch();
@@ -39,15 +40,6 @@ function Cart() {
         }).unwrap();
 
         dispatch(setCourseCart(data));
-    }
-
-    async function handlePurchasedItems(id) {
-        const data = await addToPurchasedList({
-            items: [...id],
-        }).unwrap();
-
-        dispatch(setPurchasedCourses(data.purchased_courses));
-        dispatch(setCourseCart(data.cart));
     }
 
     return (
@@ -138,7 +130,7 @@ function Cart() {
                                                 <CourseCard
                                                     courseData={item.course}
                                                 />
-                                                <LoadingButton
+                                                {/* <LoadingButton
                                                     fullWidth
                                                     sx={{ marginY: 2 }}
                                                     variant="contained"
@@ -158,7 +150,7 @@ function Cart() {
                                                     >
                                                         Purchase now
                                                     </Typography>
-                                                </LoadingButton>
+                                                </LoadingButton> */}
                                             </Grid>
                                         </>
                                     ))}
@@ -166,7 +158,7 @@ function Cart() {
                                     <Grid item xs={12}></Grid>
                                     <Grid item lg={3} md={2} xs={12}></Grid>
                                     <Grid item lg={6} md={8} xs={12}>
-                                        <LoadingButton
+                                        {/* <LoadingButton
                                             fullWidth
                                             sx={{ marginY: 2 }}
                                             variant="contained"
@@ -193,7 +185,20 @@ function Cart() {
                                             >
                                                 Purchase All
                                             </Typography>
-                                        </LoadingButton>
+                                        </LoadingButton> */}
+
+                                        <Link to="/checkout">
+                                            <LoadingButton
+                                                fullWidth
+                                                sx={{ marginY: 2 }}
+                                                variant="contained"
+                                                // loading={isLoading}
+                                                size="medium"
+                                                color="primary"
+                                            >
+                                                Purchase All
+                                            </LoadingButton>
+                                        </Link>
                                     </Grid>
                                     <Grid item lg={3} md={2} xs={12}></Grid>
                                 </>

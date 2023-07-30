@@ -33,6 +33,7 @@ import CourseCardList from "../Common/CourseCardList/CourseCardList";
 import SubCategoryCardList from "../Common/SubCategoryCardList/SubCategoryCardList";
 import Cart from "../Pages/Cart/Cart";
 import PurchasedCourses from "../Pages/PurchasedCourses/PurchasedCourses";
+import Checkout from "../Pages/Checkout/Checkout";
 
 const router = createBrowserRouter([
     {
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
             {
                 path: "/cart",
                 element: <PrivateRoutes element={<Cart />} />,
+            },
+            {
+                path: "/checkout",
+                element: <PrivateRoutes element={<Checkout />} />,
             },
             {
                 path: "/purchasedcourses",
