@@ -3,8 +3,10 @@ import CustomMenu from "../../../Components/CustomMenu";
 import { flexBox } from "../../../HelperPropFunctions/flexBox";
 import { useFormik } from "formik";
 import {
+    Box,
     Button,
     Divider,
+    Grid,
     ListItemText,
     MenuItem,
     Paper,
@@ -17,10 +19,24 @@ import { primarySubtitleProps } from "../../../HelperPropFunctions/typography";
 import { useAllSubCategoriesQuery } from "../../../Features/Categories/categoriesApiSlice";
 import Loader from "../../../Components/Loader";
 import { useSearchCoursesMutation } from "../../../Features/Courses/coursesApiSlice";
+import CustomDialog from "../../../Components/CustomDialog";
+import CourseCard from "../../../Common/Cards/CourseCard/CourseCard";
 
 function SearchFilter() {
     const { data, isLoading } = useAllSubCategoriesQuery();
     const [searchFilter, searchResponse] = useSearchCoursesMutation();
+
+    // Dialog
+    const [open, setOpen] = useState(false);
+    const [searchedData, setSearchedData] = useState([]);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (value) => {
+        setOpen(false);
+    };
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -31,6 +47,10 @@ function SearchFilter() {
         },
         onSubmit: async (values) => {
             const responseData = await searchFilter(values).unwrap();
+            handleClickOpen();
+
+            setSearchedData(responseData);
+
             console.log(responseData);
         },
     });
@@ -125,6 +145,37 @@ function SearchFilter() {
                     />
                 </Stack>
             </form>
+            <CustomDialog maxWidth={"md"} open={open} onClose={handleClose}>
+                <Box padding={3}>
+                    <Typography
+                        variant="h1"
+                        color="inherit"
+                        fontWeight={"bold"}
+                        marginBottom={5}
+                    >
+                        Searched Results
+                    </Typography>
+                    <Grid container>
+                        {searchedData.length == 0 ? (
+                            <Grid item lg={12}>
+                                <Typography
+                                    variant="h4"
+                                    color="secondary"
+                                    fontWeight={"bold"}
+                                >
+                                    No Courses with this search results
+                                </Typography>
+                            </Grid>
+                        ) : (
+                            searchedData.map((item, index) => (
+                                <Grid item lg={5} key={index}>
+                                    <CourseCard courseData={item} />
+                                </Grid>
+                            ))
+                        )}
+                    </Grid>
+                </Box>
+            </CustomDialog>
         </Paper>
     ) : (
         <Loader />

@@ -8,6 +8,7 @@ import { flexBox } from "../../../HelperPropFunctions/flexBox";
 import {
     primaryHeadingBoldProps,
     primarySubtitleProps,
+    secondarySubtitleProps,
 } from "../../../HelperPropFunctions/typography";
 import {
     MobileContainer,
@@ -38,7 +39,11 @@ function MainSection() {
                         >
                             Grow up your skills by online courses with Eduvi
                         </Typography>
-                        <Typography {...primarySubtitleProps({})}>
+                        <Typography
+                            {...secondarySubtitleProps({
+                                light: "true",
+                            })}
+                        >
                             Eduvi is a Global training provider based across the
                             UK that specialises in accredited and bespoke
                             training courses. We crush the barriers togetting a
